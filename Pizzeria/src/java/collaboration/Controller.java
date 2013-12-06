@@ -94,6 +94,18 @@ public class Controller extends HttpServlet {
                dsp.forward(request, response); 
            }
            
+           else if (action.equals("logout")){
+               UtentiBean utenti = new UtentiBean();
+               utenti.setUsername(null);
+               utenti.setRuolo(null);
+               HttpSession session = request.getSession();
+               session.invalidate();
+               request.setAttribute("messaggio", "Fai il login per accedere ai servizi oppure registrati");
+               request.setAttribute("pizze",model.getCatalogoPizze());
+               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/index.jsp");
+               dsp.forward(request, response);
+           }
+           
         } catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             RequestDispatcher dsp = getServletContext().getRequestDispatcher("/error.jsp");
