@@ -47,17 +47,9 @@ public class UtentiBean {
         } else {
             userInterface+="<form id=\"frmLogin\" action=\"Controller\" method=\"POST\">\n" +
 "                        <input type=\"hidden\" id=\"action\" name=\"action\" value=\"logout\" />\n" +
-"                        Benvenuto, " + username + "\n" +
+"                        <p> Benvenuto, " + username + " </p>\n" +
 "                        <input class=\"centered\" id=\"btnLogout\" name=\"btnLogout\" type=\"submit\" value=\"Logout\" />\n" +
-"                    </form>"; /*+
-"                    <form id=\"frmPrenotazioni\" action=\"Controller\" method=\"POST\">\n" +
-"                       <input type=\"hidden\" id=\"action\" name=\"action\" value=\"prenotazioni\" />\n" +
-"                       <input id=\"btnReg\" name=\"btnReg\" type=\"submit\" value=\"Visualizza le tue prenotazioni\" />\n" +
-"                    </form>" +                  
-"                    <form id=\"frmOrdina\" action=\"Controller\" method=\"POST\">\n" +
-"                       <input type=\"hidden\" id=\"action\" name=\"action\" value=\"ordina\" />\n" +
-"                       <input id=\"btnReg\" name=\"btnReg\" type=\"submit\" value=\"Ordina pizza\" />\n" +
-"                    </form>";*/
+"                    </form>";
         }
         return userInterface;
     }  
