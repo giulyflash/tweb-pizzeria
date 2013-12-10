@@ -8,13 +8,18 @@ import java.util.ArrayList;
  */
 public class PizzeBean {
     private ArrayList<ArrayList<String>> pizze;
-
+    private ArrayList<String> lista;
+    
     public ArrayList<ArrayList<String>> getPizze() {
         return pizze;
     }
 
     public void setPizze(ArrayList<ArrayList<String>> pizze) {
         this.pizze = pizze;
+    }
+    
+    public void setLista(ArrayList<String> lista){
+        this.lista=lista;
     }
     
     public String getTabellaPizze() {
@@ -29,9 +34,18 @@ public class PizzeBean {
                 table+="</tr>\n\t";
             }
         }
-        
         table+="</table>";
-        
         return table;
+    }
+    
+    public String getListaPizze(){
+        String ret="";
+        ret="<option value=\"pizza\">Scegli la pizza</option>";
+        if(lista!=null) {
+            for(String elenco : lista) {
+                ret+="<option value="+elenco+">"+elenco+"</option>";
+            }
+        }
+        return ret;
     }
 }

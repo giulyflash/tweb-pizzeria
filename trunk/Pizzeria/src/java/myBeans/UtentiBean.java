@@ -63,8 +63,8 @@ public class UtentiBean {
                 menu=menu+"<h3 class=\"intestazione\"> Menu </h3>";
                 menu=menu+"<p>";
                 menu=menu+"<ul>";
-                menu=menu+"<li> <a href=\"Controller.java?action=\"ordina\"\">Fai un nuovo ordine </a> </li>";
-                menu=menu+"<li> <a href=\"Controller.java?action=\"prenotazioni\"\">Visualizza i tuoi ordini </a> </li>";
+                menu=menu+"<li> <a href=\"Controller?action=ordina\">Fai un nuovo ordine </a> </li>";
+                menu=menu+"<li> <a href=\"Controller?action=prenotazioni\">Visualizza i tuoi ordini </a> </li>";
                 menu=menu+"</ul>";
                 menu=menu+"</p>";
                 menu=menu+"</nav>";
@@ -75,10 +75,10 @@ public class UtentiBean {
                 menu=menu+"<h3 class=\"intestazione\"> Menu </h3>";
                 menu=menu+"<p>";
                 menu=menu+"<ul>";
-                menu=menu+"<li> <a href=\"Controller.java?action=\"ordina\"\">Fai un nuovo ordine </a> </li>";
-                menu=menu+"<li> <a href=\"Controller.java?action=\"prenotazioni\"\">Visualizza i tuoi ordini </a> </li>";
-                menu=menu+"<li> <a href=\"Controller.java?action=\"storia\"\">Visualizza lo storico degli ordini </a> </li>";
-                menu=menu+"<li> <a href=\"Controller.java?action=\"modifica\"\">Modifica elenco pizze </a> </li>";
+                menu=menu+"<li> <a href=\"Controller?action=ordina\">Fai un nuovo ordine </a> </li>";
+                menu=menu+"<li> <a href=\"Controller?action=prenotazioni\">Visualizza i tuoi ordini </a> </li>";
+                menu=menu+"<li> <a href=\"Controller?action=storia\">Visualizza lo storico degli ordini </a> </li>";
+                menu=menu+"<li> <a href=\"Controller?action=modifica\">Modifica elenco pizze </a> </li>";
                 menu=menu+"</ul>";
                 menu=menu+"</p>";
                 menu=menu+"</nav>";

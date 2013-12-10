@@ -85,6 +85,7 @@ public class Controller extends HttpServlet {
            }
            
            else if(action.equals("ordina")){
+               request.setAttribute("lista",model.getLista());
                RequestDispatcher dsp= getServletContext().getRequestDispatcher("/ordinaPizza.jsp");
                dsp.forward(request, response);
            }
@@ -104,6 +105,10 @@ public class Controller extends HttpServlet {
                request.setAttribute("pizze",model.getCatalogoPizze());
                RequestDispatcher dsp= getServletContext().getRequestDispatcher("/index.jsp");
                dsp.forward(request, response);
+           }
+           
+           else if (action.equals("validate")){
+               
            }
            
         } catch (SQLException ex) {

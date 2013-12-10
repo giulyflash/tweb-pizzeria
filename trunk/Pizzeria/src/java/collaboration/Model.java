@@ -68,4 +68,24 @@ public class Model {
         
         return role;
     }
+    
+    public ArrayList<String> getLista(){
+        ArrayList<String>lista = new ArrayList<String>();
+        try{
+            Connection conn = DriverManager.getConnection(url, user, pwd);
+            String query = "SELECT * FROM pizze";
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            while(rs.next()) {
+                ArrayList<String> pizza = new ArrayList<String>();
+                lista.add(rs.getString("nome"));
+            }    
+            conn.close();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();            
+            lista = null;
+        }
+        return lista;
+    }
 }
