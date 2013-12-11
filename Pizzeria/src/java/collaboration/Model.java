@@ -1,9 +1,11 @@
 package collaboration;
 
-import java.util.ArrayList;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 
 
@@ -87,5 +89,20 @@ public class Model {
             lista = null;
         }
         return lista;
+    }
+    
+    public int insertPrenotazione (String user, String nome, int quantita){
+        try{
+            Connection conn = DriverManager.getConnection(url, this.user, pwd);
+            Statement st = conn.createStatement();
+            SimpleDateFormat data = new SimpleDateFormat("yyyy-MM-dd");
+            nome.replaceAll("\r","");
+            st.execute("INSERT INTO Prenotazioni VALUES ('"+user+"','"+nome+"',"+quantita+",current date,false,null)");
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return 0;
+        }
+        return 1;
     }
 }

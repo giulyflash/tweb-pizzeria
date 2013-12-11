@@ -7,6 +7,8 @@ package collaboration;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -41,6 +43,7 @@ public class Controller extends HttpServlet {
             //Il controller chiede al model l'arraylist delle pizze per poi metterle nella request
             //la vista crea la tabella delle pizze attraverso un javaBean
            String action = request.getParameter("action");
+           String [] stringhe = new String[100];
            
            if(action==null) {
                UtentiBean utenti = new UtentiBean();
@@ -111,11 +114,15 @@ public class Controller extends HttpServlet {
                
            }
            
+           else if (action.equals("add")){
+               int i=stringhe.length-1;
+               
+           }
         } catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             RequestDispatcher dsp = getServletContext().getRequestDispatcher("/error.jsp");
             dsp.forward(request, response);
-        }
+          }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

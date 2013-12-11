@@ -39,6 +39,7 @@ function validaLogin() {
 function aggiungiPrenotazione(){
     var cmbPizza = document.getElementById("cmbPizza");
     var txtQuantita = document.getElementById("txtQuantita");
+    var txtNumero = document.getElementById("txtNumero");
     var error=false;
     
     if (cmbPizza.value==="" || txtQuantita.value===""){
@@ -47,8 +48,8 @@ function aggiungiPrenotazione(){
     }
     
     if (!error){
-        var txtPrenota=document.getElementById("txtPrenota");
-        txtPrenota.value=txtPrenota.value+cmbPizza.value+ " " + txtQuantita.value + "\n";
+        txtNumero.value=txtNumero.value+txtQuantita.value;
+        document.getElementById("aggiungi").submit();
     }
 }
 
@@ -62,6 +63,6 @@ function confPrenotazione(){
     }
     
     if (!error){
-        document.getElementById("dati").action();
+        document.getElementById("dati").submit();
     }
 }
