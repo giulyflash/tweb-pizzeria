@@ -19,7 +19,7 @@
             <div class="divMain" id="divMain">
                 <h2 class="sottotitolo">Fai il tuo ordine</h2>
             </div>
-            <form id="dati" action="Controller" method="post">
+            <form id="dati" name="dati" action="Controller" method="post">
             <input type="hidden" id="action" name="action" value="validate"/>
                 <table class="tblBordi">
                     <tr>
@@ -32,15 +32,23 @@
                         <td>Quantità:</td>
                         <td> <input type="number" id="txtQuantita"></td>
                     </tr>
+                    <tr>
+                        <td>Numero pizze ordinate:</td>
+                        <td> <input type="text" id="txtNumero" readonly/></td>
+                    </tr>
                 </table>
                 <table class="tblReg">
                     <tr>
-                        <td> <input type="button" id="aggiungi" onclick="aggiungiPrenotazione();" value="Aggiungi"/> </td>
+                        <td> <form id="aggiungi" name="aggiungi" action="Controller">
+                                <input type="button" id="aggiungi" onclick="aggiungiPrenotazione();" value="Aggiungi"/>
+                                <input type="hidden" id="action" name="action" value="add"/>
+                            </form>
+                        </td>
                         <td> <input type="button" id="conferma" onclick="confPrenotazione();" value="Prenota"/> </td>
                     </tr>
                 </table>
             <hr>
-            <textarea id="txtPrenota" readonly class="textArea"></textarea>
+            <textarea name="elenco" id="txtPrenota" readonly class="textArea"></textarea>
             </form>
         </article> 
         <aside>
