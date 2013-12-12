@@ -42,7 +42,7 @@ public class PizzeBean {
                 table+="\n\t<tr>\n\t";
                 table+="\t<td>" + pizza.get(0) +"</td>\n\t";
                 table+="\t<td>" + pizza.get(1) +"</td>\n\t";
-                table+="\t<td>" + pizza.get(2) +"</td>\n\t";
+                table+="\t<td>" + pizza.get(2) +" &#8364</td>\n\t";
                 table+="</tr>\n\t";
             }
         }
