@@ -45,9 +45,14 @@ function aggiungiPrenotazione(){
         var row = table.insertRow(-1);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
         cell1.innerHTML = cmbPizza.value;
         cell2.innerHTML = txtQuantita.value;
-        //document.getElementById("dati").submit();
+        var element1 = document.createElement("input");
+        var rowCount = table.rows.length-1;
+        element1.type = "checkbox";
+        element1.name = "chkStatus"+rowCount;
+        cell3.appendChild(element1);
     }
 }
 
@@ -61,6 +66,6 @@ function confPrenotazione(){
     }
     
     if (!error){
-        document.getElementById("aggiungi").submit();
+        document.getElementById("pizze").submit();
     }
 }

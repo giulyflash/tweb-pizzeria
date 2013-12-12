@@ -45,16 +45,23 @@
                 </table>
                 </form>
             </table>
-                    <hr>
-                    <div class="divMain" id="divMain">
+            <hr>
+            <form id="pizze" name="pizze" action="Controller" method="post">
+            <div class="divMain" id="divMain">
                     <h2 class="sottotitolo">Pizze ordinate</h2>
-                    <table class="tblBordi" id="table">
-                        <tr>
-                            <th>Pizza</th>
-                            <th>Quantita</th>
-                        </tr>
-                    </table>
-            </div>
+                        <table class="tblBordi" id="table">
+                            <tr>
+                                <th>Pizza</th>
+                                <th>Quantita</th>
+                                <th>Conferma</th>
+                            </tr>
+                        </table>
+                </div>
+                <div class="divMain" id="divMain">
+                    <input type="hidden" id="action" name="action" value="validate"/>
+                    <input type="button" id="prenota" onclick="confPrenotazione();" value="Prenota"/>
+                </div>
+            </form>
         </article>
         <aside>
             <jsp:include page="/frmLogin.jsp"></jsp:include>

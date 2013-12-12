@@ -35,7 +35,7 @@ public class Model {
                 ArrayList<String> pizza = new ArrayList<String>();
                 pizza.add(rs.getString("nome"));
                 pizza.add(rs.getString("ingredienti"));
-                pizza.add(Double.toString(rs.getDouble("prezzo")));
+                pizza.add(Double.toString(rs.getDouble("prezzo"))+"0");
                 
                 catalogo.add(pizza);
             }    
