@@ -105,4 +105,25 @@ public class Model {
         }
         return 1;
     }
+    public ArrayList<ArrayList<String>> getOrdini(String user){
+        ArrayList<ArrayList<String>> ordini= new ArrayList<ArrayList<String>>();
+        
+        try{
+            Connection conn = DriverManager.getConnection(url, this.user, pwd);
+            String query="SELECT * FROM Prenotazioni WHERE Prenotazioni.utente='"+user+"'";
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            while(rs.next()) {
+                ArrayList<String> pizza = new ArrayList<String>();
+                pizza.add(rs.getString("pizza"));
+                pizza.add(rs.getString("quantita"));
+                ordini.add(pizza);
+            }    
+            conn.close();
+        }catch (SQLException ex) {
+            ex.printStackTrace();            
+            ordini = null;
+        }
+        return ordini;
+    }
 }

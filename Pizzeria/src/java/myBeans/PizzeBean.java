@@ -9,7 +9,11 @@ import java.util.ArrayList;
 public class PizzeBean {
     private ArrayList<ArrayList<String>> pizze;
     private ArrayList<String> lista;
+
+    private ArrayList<ArrayList<String>> ordini;
+
     private String tabella="";
+
     
     public ArrayList<ArrayList<String>> getPizze() {
         return pizze;
@@ -22,6 +26,13 @@ public class PizzeBean {
     public void setLista(ArrayList<String> lista){
         this.lista=lista;
     } 
+    public ArrayList<ArrayList<String>> getOrdini() {
+        return ordini;
+    }
+
+    public void setOrdini(ArrayList<ArrayList<String>> ordini) {
+        this.ordini = ordini;
+    }
     
     public String getTabellaPizze() {
         String table = "<table class=\"tblBordi\">";
@@ -49,6 +60,22 @@ public class PizzeBean {
         }
         return ret;
     }
+
+    public String getTabellaOrdini() {
+        String table = "<table class=\"tblBordi\">";
+        table+="\n\t<tr>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t</tr>";
+        if(ordini!=null) {
+            for(ArrayList<String> pizza : ordini) {
+                table+="\n\t<tr>\n\t";
+                table+="\t<td>" + pizza.get(0) +"</td>\n\t";
+                table+="\t<td>" + pizza.get(1) +"</td>\n\t";
+                table+="</tr>\n\t";
+            }
+        }
+        table+="</table>";
+        return table;
+    }
+
     
     public void setTabella(String nome, String quantita){
         if (nome.compareTo("")==0) tabella="";
@@ -63,4 +90,5 @@ public class PizzeBean {
     public String getTabella(){
         return tabella;
     }
+
 }
