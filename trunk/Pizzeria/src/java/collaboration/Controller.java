@@ -97,7 +97,10 @@ public class Controller extends HttpServlet {
            }
            
            else if(action.equals("prenotazioni")){
-               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/prenota.jsp");
+               HttpSession session = request.getSession();
+               String utente= (String)session.getAttribute("username");
+               request.setAttribute("ordini",model.getOrdini(utente));
+               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/visualizzaOrdini.jsp");
                dsp.forward(request, response); 
            }
            
