@@ -40,6 +40,7 @@
                 <table class="tblReg">
                     <tr>
                         <td> <input type="button" id="aggiungi" onclick="aggiungiPrenotazione();" value="Aggiungi"/> </td>
+                        <td> <input type="button" id="conferma" onlclick="confPrenotazione();" value="Conferma prenotazione" /> </td>
                     </tr>
                 </table>
                 </form>
