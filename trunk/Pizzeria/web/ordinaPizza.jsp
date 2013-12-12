@@ -20,36 +20,39 @@
                 <h2 class="sottotitolo">Fai il tuo ordine</h2>
             </div>
             <form id="dati" name="dati" action="Controller" method="post">
-            <input type="hidden" id="action" name="action" value="validate"/>
+                <input type="hidden" id="action" name="action" value="add"/>
                 <table class="tblBordi">
                     <tr>
                         <td>Pizza:</td>
-                        <td> <select id="cmbPizza">
+                        <td> <select id="cmbPizza" name="cmbPizza">
                                 <jsp:getProperty name="catalogoPizze" property="listaPizze"></jsp:getProperty>
                         </select></td>
                     </tr>
                     <tr>
                         <td>Quantità:</td>
-                        <td> <input type="number" id="txtQuantita"></td>
+                        <td> <input type="number" id="txtQuantita" name="txtQuantita"></td>
                     </tr>
                     <tr>
                         <td>Numero pizze ordinate:</td>
                         <td> <input type="text" id="txtNumero" readonly/></td>
                     </tr>
                 </table>
-                <table class="tblReg">
-                    <tr>
-                        <td> <form id="aggiungi" name="aggiungi" action="Controller">
-                                <input type="button" id="aggiungi" onclick="aggiungiPrenotazione();" value="Aggiungi"/>
-                                <input type="hidden" id="action" name="action" value="add"/>
-                            </form>
-                        </td>
-                        <td> <input type="button" id="conferma" onclick="confPrenotazione();" value="Prenota"/> </td>
-                    </tr>
-                </table>
-            <hr>
-            <textarea name="elenco" id="txtPrenota" readonly class="textArea"></textarea>
+             <input type="button" id="aggiungi" onclick="aggiungiPrenotazione();" value="Aggiungi" class="buttonSX"/>
+        </form>
+        <div class="buttonDX">
+            <form id="aggiungi" name="aggiungi" action="Controller" method="post">
+                <input type="button" id="conferma" onclick="confPrenotazione();" value="Prenota" class="buttonSX"/>
+                <input type="hidden" id="action" name="action" value="validate"/>
             </form>
+        </div>
+        <table class="tblBordi">
+            <tr>
+                <td>Pizza scelta</td>
+                <td>Numero di pizze</td>
+            </tr>
+            <%=request.getAttribute("tabella")%>
+            <%request.setAttribute("tabella",request.getAttribute("tabella"));%>
+        </table>
         </article> 
         <aside>
                 <jsp:include page="/frmLogin.jsp"></jsp:include>

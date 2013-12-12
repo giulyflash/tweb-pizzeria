@@ -29,11 +29,6 @@ article {
 
 aside {
     width: 24%;
-    //margin-top: 1%;
-    //margin-left: 1%;
-    //margin-right: 10%;
-    //background-color: white;
-    //border: 2px solid black;
     float: left;
     text-align: center;
 }
@@ -41,7 +36,6 @@ aside {
 nav{
     width: 24%;
     float: left;
-    //background-color: white;
 }
 
 .articleCenter{
@@ -52,14 +46,14 @@ nav{
     width: 100%;
     text-align: center;
     font: 300% Comic Sans MS;
-    color: cornflowerblue;
+    color: blue;
 }
 
 .sottotitolo {    
     width: 100%;
     text-align: center;
     font: 170% Georgia;
-    color: cornflowerblue;
+    color: blue;
     margin: 15px;
 }
 
@@ -67,7 +61,7 @@ nav{
     width: 100%;
     text-align: center;
     font: 150% Georgia;
-    color: darkblue;
+    color: green;
 }
 
 .separatore {
@@ -81,8 +75,8 @@ nav{
 
 .tblReg {
     width: 40%;
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 40%;
+    margin-right: 50%;
     text-align: left;
 }
 
@@ -139,4 +133,14 @@ nav{
     margin-left:35%;
     width:200px;
     height:200px;
+}
+
+.buttonSX{
+    margin-left:25%;
+    float:left;
+}
+
+.buttonDX{
+    margin-right:25%;
+    float:right;
 }
