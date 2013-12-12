@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class PizzeBean {
     private ArrayList<ArrayList<String>> pizze;
     private ArrayList<String> lista;
+    private String tabella="";
     
     public ArrayList<ArrayList<String>> getPizze() {
         return pizze;
@@ -20,7 +21,7 @@ public class PizzeBean {
     
     public void setLista(ArrayList<String> lista){
         this.lista=lista;
-    }
+    } 
     
     public String getTabellaPizze() {
         String table = "<table class=\"tblBordi\">";
@@ -43,9 +44,23 @@ public class PizzeBean {
         ret="<option value=\"pizza\">Scegli la pizza</option>";
         if(lista!=null) {
             for(String elenco : lista) {
-                ret+="<option value="+elenco+">"+elenco+"</option>";
+                ret+="<option value=\""+elenco+"\">"+elenco+"</option>";
             }
         }
         return ret;
+    }
+    
+    public void setTabella(String nome, String quantita){
+        if (nome.compareTo("")==0) tabella="";
+        else{
+            tabella=tabella+"<tr>";
+            tabella=tabella+"<td>" + nome + "</td>";
+            tabella=tabella+"<td>" + quantita + "</td>";
+            tabella=tabella+"</tr>";
+        }
+    }
+
+    public String getTabella(){
+        return tabella;
     }
 }

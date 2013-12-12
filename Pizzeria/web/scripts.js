@@ -1,17 +1,10 @@
 function validaReg() {
-    //var txtNome = document.getElementById("txtNome");
-    //var txtCognome = document.getElementById("txtCognome");
-    //var txtDataNasc = document.getElementById("txtDataNasc");
-    //var rdbSesso = document.getElementById("rdbSesso");
     var txtUsername = document.getElementById("txtUsername");
     var txtPassword = document.getElementById("txtPassword");
     var cmbRuolo = document.getElementById("cmbRuolo");
     
     var error = false;
     
-    //if(txtNome.value=="") error=true;
-    //else if(txtCognome.value=="") error=true;
-    //else if(txtDataNasc.value=="") error=true;
     if(txtUsername.value==="") error=true;
     else if(txtPassword.value==="") error=true;
     
@@ -39,7 +32,8 @@ function validaLogin() {
 function aggiungiPrenotazione(){
     var cmbPizza = document.getElementById("cmbPizza");
     var txtQuantita = document.getElementById("txtQuantita");
-    var txtNumero = document.getElementById("txtNumero");
+    var table=document.getElementById("table");
+    
     var error=false;
     
     if (cmbPizza.value==="" || txtQuantita.value===""){
@@ -48,8 +42,12 @@ function aggiungiPrenotazione(){
     }
     
     if (!error){
-        txtNumero.value=txtNumero.value+txtQuantita.value;
-        document.getElementById("aggiungi").submit();
+        var row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = cmbPizza.value;
+        cell2.innerHTML = txtQuantita.value;
+        //document.getElementById("dati").submit();
     }
 }
 
@@ -63,6 +61,6 @@ function confPrenotazione(){
     }
     
     if (!error){
-        document.getElementById("dati").submit();
+        document.getElementById("aggiungi").submit();
     }
 }
