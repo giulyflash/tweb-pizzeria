@@ -91,13 +91,11 @@ public class Model {
         return lista;
     }
     
-    public int insertPrenotazione (String user, String nome, int quantita){
+    public int insertPrenotazione (String user, String nome, String quantita){
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement st = conn.createStatement();
-            SimpleDateFormat data = new SimpleDateFormat("yyyy-MM-dd");
-            nome.replaceAll("\r","");
-            st.execute("INSERT INTO Prenotazioni VALUES ('"+user+"','"+nome+"',"+quantita+",current date,false,null)");
+            st.execute("INSERT INTO Prenotazioni VALUES ('"+user+"','"+nome+"',"+quantita+",false,null,current timestamp)");
             conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
