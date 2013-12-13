@@ -32,7 +32,7 @@
                 <tr>
                 <form id="dati" name="dati" action="Controller" method="post">
                     <input type="hidden" id="action" name="action" value="add"/>
-                    <td> <select id="cmbPizza" name="cmbPizza">
+                    <td> <select id="cmbPizza" name="cmbPizza" selected="Scegli la pizza">
                                 <jsp:getProperty name="catalogoPizze" property="listaPizze"></jsp:getProperty>
                     </select></td>
                     <td> <input type="number" id="txtQuantita" name="txtQuantita"></td>
@@ -40,7 +40,6 @@
                 <table class="tblReg">
                     <tr>
                         <td> <input type="button" id="aggiungi" onclick="aggiungiPrenotazione();" value="Aggiungi"/> </td>
-                        <td> <input type="button" id="conferma" onlclick="confPrenotazione();" value="Conferma prenotazione" /> </td>
                     </tr>
                 </table>
                 </form>
@@ -48,8 +47,9 @@
             <hr>
             <form id="pizze" name="pizze" action="Controller" method="post">
             <div class="divMain" id="divMain">
+                <%=request.getAttribute("messaggio")%>
                     <h2 class="sottotitolo">Pizze ordinate</h2>
-                        <table class="tblBordi" id="table">
+                        <table class="tblBordi" id="table" name="table">
                             <tr>
                                 <th>Pizza</th>
                                 <th>Quantita</th>
@@ -59,6 +59,7 @@
                 </div>
                 <div class="divMain" id="divMain">
                     <input type="hidden" id="action" name="action" value="validate"/>
+                    <input type="hidden" id="rowCount" name="rowCount" value="0"/>
                     <input type="button" id="prenota" onclick="confPrenotazione();" value="Prenota"/>
                 </div>
             </form>

@@ -52,7 +52,7 @@ public class PizzeBean {
     
     public String getListaPizze(){
         String ret="";
-        ret="<option value=\"pizza\">Scegli la pizza</option>";
+        ret+="<option value=\"Scegli la pizza\">Scegli la pizza </option>";
         if(lista!=null) {
             for(String elenco : lista) {
                 ret+="<option value=\""+elenco+"\">"+elenco+"</option>";

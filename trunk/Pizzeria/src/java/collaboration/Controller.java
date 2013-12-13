@@ -65,13 +65,13 @@ public class Controller extends HttpServlet {
                if(username!=null && password!=null) role = model.getUserRole(username, password);
                
                if(role==null) {
-                   request.setAttribute("error", "Errore nell'autenticazione");
+                   request.setAttribute("messaggio", "Errore nell'autenticazione");
                    RequestDispatcher dsp = getServletContext().getRequestDispatcher("/error.jsp");
                    dsp.forward(request, response);
                    return;
                }
                else if (role.equals("")) {
-                   request.setAttribute("error", "Username o password errati!");
+                   request.setAttribute("messaggio", "Username o password errati!");
                }
                else {
                    HttpSession session = request.getSession();
@@ -92,6 +92,7 @@ public class Controller extends HttpServlet {
            
            else if(action.equals("ordina")){
                request.setAttribute("lista",model.getLista());
+               request.setAttribute("messaggio", "");
                RequestDispatcher dsp= getServletContext().getRequestDispatcher("/newOrdina.jsp");
                dsp.forward(request, response);
            }
@@ -117,7 +118,33 @@ public class Controller extends HttpServlet {
            }
            
            else if (action.equals("validate")){
-               
+               HttpSession session = request.getSession();
+               String utente= (String)session.getAttribute("username");
+               int rowCount = Integer.parseInt(request.getParameter("rowCount"));
+               RequestDispatcher dsp=null;
+               String nome = null;
+               String quantita = null;
+               String status;
+               boolean error=false;
+               for (int i=0; i<rowCount; i++){
+                   status=request.getParameter("chkStatus"+(i+1));
+                   if (status!=null){
+                       nome=request.getParameter("txtNome"+(i+1));
+                       quantita=request.getParameter("txtNum"+(i+1));
+                       int ret = model.insertPrenotazione(utente, nome, quantita);
+                       if (ret==0){
+                           request.setAttribute("messaggio", "Prenotazione fallita, riprovare");
+                           dsp= getServletContext().getRequestDispatcher("/newOrdina.jsp");
+                           error=true;
+                       }
+                   }
+               }
+               if (!error){
+                   request.setAttribute("messaggio", "Prenotazione salvata correttamente");
+                   dsp= getServletContext().getRequestDispatcher("/index.jsp");
+               }
+               request.setAttribute("pizze",model.getCatalogoPizze());
+               dsp.forward(request, response);
            }
            
         } catch (SQLException ex) {

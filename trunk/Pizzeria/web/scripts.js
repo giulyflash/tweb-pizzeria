@@ -33,39 +33,55 @@ function aggiungiPrenotazione(){
     var cmbPizza = document.getElementById("cmbPizza");
     var txtQuantita = document.getElementById("txtQuantita");
     var table=document.getElementById("table");
-    
+    var rowCount = parseInt(table.rows.length);
     var error=false;
     
-    if (cmbPizza.value==="" || txtQuantita.value===""){
-        alert ("Completare tutti i campi");
+    if (cmbPizza.value==="" || cmbPizza.value==="Scegli la pizza" || txtQuantita.value==="" || txtQuantita.value==="0"){
+        alert ("Completare correttamente tutti i campi");
         error=true;
     }
     
     if (!error){
-        var row = table.insertRow(-1);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        cell1.innerHTML = cmbPizza.value;
-        cell2.innerHTML = txtQuantita.value;
-        var element1 = document.createElement("input");
-        var rowCount = table.rows.length-1;
-        element1.type = "checkbox";
-        element1.name = "chkStatus"+rowCount;
-        cell3.appendChild(element1);
+            var num = parseInt(txtQuantita.value); 
+            var row = table.insertRow(-1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var element3 = document.createElement("input");
+            var element2 = document.createElement("input");
+            var element1 = document.createElement("input");
+            element1.type = "text";
+            element1.name = "txtNome"+rowCount;
+            element1.value= cmbPizza.value;
+            element1.readOnly=true;
+            element2.type = "number";
+            element2.name = "txtNum"+rowCount;
+            element2.value= num;
+            element3.type = "checkbox";
+            element3.name = "chkStatus"+rowCount;
+            element3.checked="checked";
+            element3.readOnly=true;
+            cell3.appendChild(element3)
+            cell2.appendChild(element2);
+            cell1.appendChild(element1);
+            cmbPizza.value="Scegli la pizza";
+            txtQuantita.value=null;
     }
 }
 
 function confPrenotazione(){
-    var txtPrenota=document.getElementById("txtPrenota");
+    var txtPrenota=document.getElementById("table");
+    var hidden=document.getElementById("rowCount");
+    var rowCount = table.rows.length-1;
     var error=false;
     
-    if (txtPrenota.value===""){
+    if (rowCount<1){
         alert ("Inserisci almeno una prenotazione");
         error=true;
     }
     
     if (!error){
+        hidden.value=rowCount;
         document.getElementById("pizze").submit();
     }
 }
