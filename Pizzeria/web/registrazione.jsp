@@ -75,5 +75,8 @@
                 </form>
             </article>
         </div>
+        <footer>
+            <jsp:include page="/createFooter.jsp"></jsp:include>
+        </footer>
     </body>
 </html>
