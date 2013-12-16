@@ -67,5 +67,8 @@
         <aside>
             <jsp:include page="/frmLogin.jsp"></jsp:include>
         </aside>
+        <footer>
+            <jsp:include page="/createFooter.jsp"></jsp:include>
+        </footer>
     </body>
 </html>

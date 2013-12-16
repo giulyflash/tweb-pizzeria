@@ -105,4 +105,25 @@ public class UtentiBean {
         else menu= "<article class=\"articleCenter\">";
         return menu;
     }
+    
+    public String getFooter(){
+        String ret="";
+        ret+="<div class=\"divFooterSX\">\n" +
+"                <h4 class=\"sottotitoloF\">Realizzato da:</h4>\n" +
+"                <ul>\n" +
+"                    <li>Pavan Francesco</li>\n" +
+"                    <li>Mannu Giorgio</li>\n" +
+"                    <li>Marchisone Yari</li>\n" +
+"                </ul>\n" +
+"            </div>\n" +
+"            <div class=\"divFooterDX\">\n" +
+"                <h4 class=\"sottotitoloF\">Scrivere altro:</h4>\n" +
+"                <ul>\n" +
+"                    <li>Qui</li>\n" +
+"                    <li>E qui</li>\n" +
+"                    <li>E anche qua</li>\n" +
+"                </ul>\n" +
+"            </div>";
+        return ret;
+    }
 }

@@ -40,6 +40,12 @@ nav{
     float: left;
 }
 
+footer{
+    width:100%;
+    float:left;
+    margin-top:2%;
+}
+
 .articleCenter{
     margin-left: 24%;
 }
@@ -152,4 +158,23 @@ nav{
 .image{
     height: 150px;
     width: 200px;
+}
+
+.divFooterDX{
+    width: 24%;
+    float: right;
+    color: darkred;
+}
+
+.divFooterSX{
+    width: 24%;
+    float: left;
+    margin-left:5%;
+    color: darkred;
+}
+
+.sottotitoloF {    
+    width: 100%;
+    font: 100% Georgia;
+    color: blue;
 }
