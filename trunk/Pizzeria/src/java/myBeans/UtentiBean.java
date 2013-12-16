@@ -80,6 +80,7 @@ public class UtentiBean {
                 menu=menu+"<h3 class=\"intestazione\"> Menu </h3>";
                 menu=menu+"<p>";
                 menu=menu+"<ul>";
+                menu=menu+"<li> <a href=\"Controller?action=home\">Home</a> </li>";
                 menu=menu+"<li> <a href=\"Controller?action=ordina\">Fai un nuovo ordine </a> </li>";
                 menu=menu+"<li> <a href=\"Controller?action=prenotazioni\">Visualizza i tuoi ordini </a> </li>";
                 menu=menu+"</ul>";
@@ -92,6 +93,7 @@ public class UtentiBean {
                 menu=menu+"<h3 class=\"intestazione\"> Menu </h3>";
                 menu=menu+"<p>";
                 menu=menu+"<ul>";
+                menu=menu+"<li> <a href=\"Controller?action=home\">Home</a> </li>";
                 menu=menu+"<li> <a href=\"Controller?action=ordina\">Fai un nuovo ordine </a> </li>";
                 menu=menu+"<li> <a href=\"Controller?action=prenotazioni\">Visualizza i tuoi ordini </a> </li>";
                 menu=menu+"<li> <a href=\"Controller?action=storia\">Visualizza lo storico degli ordini </a> </li>";
