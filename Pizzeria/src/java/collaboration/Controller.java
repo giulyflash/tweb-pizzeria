@@ -154,6 +154,7 @@ public class Controller extends HttpServlet {
            // gestione catalogo pizze
            else if (action.equals("modifica")){
                request.setAttribute("lista",model.getLista());
+               request.setAttribute("messaggio", "");
                RequestDispatcher dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
                dsp.forward(request, response);
            }
@@ -167,11 +168,14 @@ public class Controller extends HttpServlet {
                error=model.insertPizza(nome, ingredienti, prezzo);
                if (!error){
                    request.setAttribute("messaggio", "Pizza inserita correttamente");
+                   request.setAttribute("pizze",model.getCatalogoPizze());
                    dsp= getServletContext().getRequestDispatcher("/index.jsp");
+                   dsp.forward(request, response);
                }
                else{
                    request.setAttribute("messaggio", "Errore, riprovare");
                    dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
+                   dsp.forward(request, response);
                }
            }
            
@@ -184,11 +188,14 @@ public class Controller extends HttpServlet {
                error=model.updatePizza(nome, ingredienti, prezzo);
                if (!error){
                    request.setAttribute("messaggio", "Pizza modificata correttamente");
+                   request.setAttribute("pizze",model.getCatalogoPizze());
                    dsp= getServletContext().getRequestDispatcher("/index.jsp");
+                   dsp.forward(request, response);
                }
                else{
                    request.setAttribute("messaggio", "Errore, riprovare");
                    dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
+                   dsp.forward(request, response);
                }
            }
            
@@ -199,11 +206,14 @@ public class Controller extends HttpServlet {
                error=model.deletePizza(nome);
                if (!error){
                    request.setAttribute("messaggio", "Pizza eliminata correttamente");
+                   request.setAttribute("pizze",model.getCatalogoPizze());
                    dsp= getServletContext().getRequestDispatcher("/index.jsp");
+                   dsp.forward(request, response);
                }
                else{
                    request.setAttribute("messaggio", "Errore, riprovare");
                    dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
+                   dsp.forward(request, response);
                }
            }
            

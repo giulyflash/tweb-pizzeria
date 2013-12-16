@@ -131,7 +131,7 @@ public class Model {
             String query="SELECT * FROM Pizze WHERE Nome='"+nome+"'";
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(query);
-            if(rs.next()) stm.execute("UPDATE Pizze SET datafine=current timestamp WHERE nome='"+nome+"'");
+            if(rs.next()) stm.execute("UPDATE Pizze SET datafine=null WHERE nome='"+nome+"'");
             else stm.execute("INSERT INTO Pizze VALUES ('"+nome+"','"+ingredienti+"',"+prezzo+",current timestamp,null)");
             conn.close();
         }catch (SQLException ex) {
