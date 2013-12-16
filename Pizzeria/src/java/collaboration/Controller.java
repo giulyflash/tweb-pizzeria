@@ -49,7 +49,7 @@ public class Controller extends HttpServlet {
            String action = request.getParameter("action");
            
            //visualizzazione index
-           if(action==null) {
+           if(action==null||action.equals("home")) {
                UtentiBean utenti = new UtentiBean();
                if (utenti.getUsername()==null) request.setAttribute("messaggio", "Fai il login per accedere ai servizi oppure registrati");
                else request.setAttribute ("messaggio", "Sei loggato come '<%= session.getAttribute(\"username\")%>', con il ruolo di '<%= session.getAttribute(\"ruolo\")%>'");
