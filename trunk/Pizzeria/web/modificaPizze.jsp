@@ -22,6 +22,9 @@
             <div class="divMain" id="divMain">
                 <h2 class="sottotitolo">Esegui una modifica</h2>
             </div>
+            <div class="divMain" id="divMain">
+                <h3 class="error"><%=request.getAttribute("messaggio")%></h3>
+            </div>
             <hr>
             <div class='divMain' id='insersci'>
                 <div class="divMain">
@@ -75,10 +78,10 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="text" id="txtIngr" name="txtIngr">
+                                <input type="text" id="txtIngrU" name="txtIngrU">
                             </td>
                             <td>
-                                <input type="text" id="txtPrezzo" name="txtPrezzo">
+                                <input type="text" id="txtPrezzoU" name="txtPrezzoU">
                             </td>
                             <td>
                                 <input type="button" id="btnModifica" name="btnModifica" value='Modifica'>
@@ -101,7 +104,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <select id="cmbPizza" name="cmbPizza" selected="Scegli la pizza">
+                                <select id="cmbPizzaD" name="cmbPizzaD" selected="Scegli la pizza">
                                     <jsp:getProperty name="catalogoPizze" property="listaPizze"></jsp:getProperty>
                                 </select>
                             </td>
