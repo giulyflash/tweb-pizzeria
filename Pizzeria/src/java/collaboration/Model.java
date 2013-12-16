@@ -22,10 +22,9 @@ public class Model {
         
         ArrayList<ArrayList<String>> catalogo = null;
         try {
-            
             Connection conn = DriverManager.getConnection(url, user, pwd);
             
-            String query = "SELECT * FROM pizze";
+            String query = "SELECT * FROM pizze WHERE datafine is null";
             
             Statement stm = conn.createStatement();
             
@@ -123,5 +122,50 @@ public class Model {
             ordini = null;
         }
         return ordini;
+    }
+    
+    public boolean insertPizza (String nome, String ingredienti, String prezzo){
+        boolean ret=false;
+        try{
+            Connection conn = DriverManager.getConnection(url, this.user, pwd);
+            String query="SELECT * FROM Pizze WHERE Nome='"+nome+"'";
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            if(rs.next()) stm.execute("UPDATE Pizze SET datafine=current timestamp WHERE nome='"+nome+"'");
+            else stm.execute("INSERT INTO Pizze VALUES ('"+nome+"','"+ingredienti+"',"+prezzo+",current timestamp,null)");
+            conn.close();
+        }catch (SQLException ex) {
+            ex.printStackTrace();            
+            ret = true;
+        }
+        return ret;
+    }
+    
+    public boolean updatePizza (String nome, String ingredienti, String prezzo){
+        boolean ret=false;
+        try{
+            Connection conn = DriverManager.getConnection(url, this.user, pwd);
+            Statement stm = conn.createStatement();
+            stm.execute("UPDATE Pizze SET ingredienti='"+ingredienti+"',prezzo="+prezzo+" WHERE nome='"+nome+"'");
+            conn.close();
+        }catch (SQLException ex) {
+            ex.printStackTrace();            
+            ret = true;
+        }
+        return ret;
+    }
+    
+    public boolean deletePizza (String nome){
+        boolean ret=false;
+        try{
+            Connection conn = DriverManager.getConnection(url, this.user, pwd);
+            Statement stm = conn.createStatement();
+            stm.execute("UPDATE Pizze SET datafine=current timestamp WHERE nome='"+nome+"'");
+            conn.close();
+        }catch (SQLException ex) {
+            ex.printStackTrace();            
+            ret = true;
+        }
+        return ret;
     }
 }

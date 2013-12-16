@@ -48,6 +48,7 @@ public class Controller extends HttpServlet {
             //la vista crea la tabella delle pizze attraverso un javaBean
            String action = request.getParameter("action");
            
+           //visualizzazione index
            if(action==null) {
                UtentiBean utenti = new UtentiBean();
                if (utenti.getUsername()==null) request.setAttribute("messaggio", "Fai il login per accedere ai servizi oppure registrati");
@@ -57,6 +58,7 @@ public class Controller extends HttpServlet {
                dsp.forward(request, response);
             } 
            
+           //gestione utente           
            else if(action.equals("login")) {   
                String username = request.getParameter("txtUsername");
                String password = request.getParameter("txtPassword");
@@ -90,21 +92,6 @@ public class Controller extends HttpServlet {
                dsp.forward(request, response);
            }
            
-           else if(action.equals("ordina")){
-               request.setAttribute("lista",model.getLista());
-               request.setAttribute("messaggio", "");
-               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/newOrdina.jsp");
-               dsp.forward(request, response);
-           }
-           
-           else if(action.equals("prenotazioni")){
-               HttpSession session = request.getSession();
-               String utente= (String)session.getAttribute("username");
-               request.setAttribute("ordini",model.getOrdini(utente));
-               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/visualizzaOrdini.jsp");
-               dsp.forward(request, response); 
-           }
-           
            else if (action.equals("logout")){
                UtentiBean utenti = new UtentiBean();
                utenti.setUsername(null);
@@ -114,6 +101,23 @@ public class Controller extends HttpServlet {
                request.setAttribute("messaggio", "Fai il login per accedere ai servizi oppure registrati");
                request.setAttribute("pizze",model.getCatalogoPizze());
                RequestDispatcher dsp= getServletContext().getRequestDispatcher("/index.jsp");
+               dsp.forward(request, response);
+           }
+           
+           //visualizzaazione utente
+           else if(action.equals("prenotazioni")){
+               HttpSession session = request.getSession();
+               String utente= (String)session.getAttribute("username");
+               request.setAttribute("ordini",model.getOrdini(utente));
+               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/visualizzaOrdini.jsp");
+               dsp.forward(request, response); 
+           }
+           
+           //gestione prenotazioni
+           else if(action.equals("ordina")){
+               request.setAttribute("lista",model.getLista());
+               request.setAttribute("messaggio", "");
+               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/newOrdina.jsp");
                dsp.forward(request, response);
            }
            
@@ -147,10 +151,60 @@ public class Controller extends HttpServlet {
                dsp.forward(request, response);
            }
            
+           // gestione catalogo pizze
            else if (action.equals("modifica")){
                request.setAttribute("lista",model.getLista());
                RequestDispatcher dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
                dsp.forward(request, response);
+           }
+           
+           else if (action.equals("insert")){
+               String nome=request.getParameter("txtNome");
+               String ingredienti=request.getParameter("txtIngr");
+               String prezzo= request.getParameter("txtPrezzo");
+               boolean error=false;
+               RequestDispatcher dsp=null;
+               error=model.insertPizza(nome, ingredienti, prezzo);
+               if (!error){
+                   request.setAttribute("messaggio", "Pizza inserita correttamente");
+                   dsp= getServletContext().getRequestDispatcher("/index.jsp");
+               }
+               else{
+                   request.setAttribute("messaggio", "Errore, riprovare");
+                   dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
+               }
+           }
+           
+           else if (action.equals("update")){
+               String nome=request.getParameter("cmbPizza");
+               String ingredienti=request.getParameter("txtIngrU");
+               String prezzo= request.getParameter("txtPrezzoU");
+               boolean error=false;
+               RequestDispatcher dsp=null;
+               error=model.updatePizza(nome, ingredienti, prezzo);
+               if (!error){
+                   request.setAttribute("messaggio", "Pizza modificata correttamente");
+                   dsp= getServletContext().getRequestDispatcher("/index.jsp");
+               }
+               else{
+                   request.setAttribute("messaggio", "Errore, riprovare");
+                   dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
+               }
+           }
+           
+           else if (action.equals("delete")){
+               String nome=request.getParameter("cmbPizzaD");
+               boolean error=false;
+               RequestDispatcher dsp=null;
+               error=model.deletePizza(nome);
+               if (!error){
+                   request.setAttribute("messaggio", "Pizza eliminata correttamente");
+                   dsp= getServletContext().getRequestDispatcher("/index.jsp");
+               }
+               else{
+                   request.setAttribute("messaggio", "Errore, riprovare");
+                   dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
+               }
            }
            
         } catch (SQLException ex) {
