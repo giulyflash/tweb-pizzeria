@@ -45,11 +45,28 @@ public class UtentiBean {
 "                       <input id=\"btnReg\" name=\"btnReg\" type=\"submit\" value=\"oppure Registrati\" />\n" +
 "                    </form>";
         } else {
-            userInterface+="<form id=\"frmLogin\" action=\"Controller\" method=\"POST\">\n" +
+            if (ruolo!=null){
+               if (ruolo.compareTo("Amministratore")==0){
+                userInterface+="<form id=\"frmLogin\" action=\"Controller\" method=\"POST\">\n" +
 "                        <input type=\"hidden\" id=\"action\" name=\"action\" value=\"logout\" />\n" +
 "                        <p> Benvenuto, " + username + " </p>\n" +
+"                        <img src=\"images/admin.jpg\" class=\"image\"/>"+
+"                        <p>" +
 "                        <input class=\"centered\" id=\"btnLogout\" name=\"btnLogout\" type=\"submit\" value=\"Logout\" />\n" +
+"                        </p>" +
 "                    </form>";
+                }
+                else if (ruolo.compareTo("Cliente")==0){
+                    userInterface+="<form id=\"frmLogin\" action=\"Controller\" method=\"POST\">\n" +
+"                        <input type=\"hidden\" id=\"action\" name=\"action\" value=\"logout\" />\n" +
+"                        <p> Benvenuto, " + username + " </p>\n" +
+"                        <img src=\"images/customer.jpg\" class=\"image\"/>"+
+"                        <p>" +
+"                        <input class=\"centered\" id=\"btnLogout\" name=\"btnLogout\" type=\"submit\" value=\"Logout\" />\n" +
+"                        </p>" +
+"                    </form>";
+                } 
+            } 
         }
         return userInterface;
     }  

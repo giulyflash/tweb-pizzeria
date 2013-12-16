@@ -4,11 +4,13 @@ root {
 
 html {
     height: 100%;
+    overflow:visible;
 }
 
 body {
     height: 80%;
     background-color: #ff9933;
+    overflow:visible;
 }
 
 header {
@@ -23,8 +25,8 @@ article {
     border-bottom: 2px solid black;
     border-top: 2px solid black;
     border-left: 2px solid black;
-    border-right: 2px solid black;  
-    height: 80%;
+    border-right: 2px solid black;
+    overflow:visible;
 }
 
 aside {
@@ -75,8 +77,9 @@ nav{
 
 .tblReg {
     width: 40%;
-    margin-left: 40%;
+    margin-left: 45%;
     margin-right: 50%;
+    margin-bottom: 2%;
     text-align: left;
 }
 
@@ -84,6 +87,7 @@ nav{
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
+    margin-bottom: 2%;
     text-align: center;
     border-collapse: collapse;
     border: 2px solid cornflowerblue;
@@ -143,4 +147,9 @@ nav{
 .buttonDX{
     margin-right:25%;
     float:right;
+}
+
+.image{
+    height: 150px;
+    width: 200px;
 }

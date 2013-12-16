@@ -147,6 +147,12 @@ public class Controller extends HttpServlet {
                dsp.forward(request, response);
            }
            
+           else if (action.equals("modifica")){
+               request.setAttribute("lista",model.getLista());
+               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
+               dsp.forward(request, response);
+           }
+           
         } catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             RequestDispatcher dsp = getServletContext().getRequestDispatcher("/error.jsp");
