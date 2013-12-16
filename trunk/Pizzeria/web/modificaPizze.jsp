@@ -12,6 +12,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                <link rel="stylesheet" href="style.css" />
+        <script type="text/javascript" src="scripts.js" ></script>
         <title>Modifica elenco pizze</title>
     </head>
     <body>
@@ -35,7 +37,7 @@
                     <table class="tblBordi">
                         <tr>
                             <th>Nome</th>
-                            <th>Ingredieti</th>
+                            <th>Ingredienti</th>
                             <th>Prezzo</th>
                         </tr>
                         <tr>
@@ -52,7 +54,7 @@
                     </table>
                     <table class="tblReg">
                     <tr>
-                        <td> <input type="button" id="btnInserisci" name="btnInserisci" value='Inserisci'> </td>
+                        <td> <input type="button" id="btnInserisci" name="btnInserisci" value='Inserisci' onclick="aggiungiPizza();"> </td>
                     </tr>
                 </table>
                 </form>
@@ -67,7 +69,7 @@
                     <table class="tblBordi">
                         <tr>
                             <th>Pizza</th>
-                            <th>Ingredieti</th>
+                            <th>Ingredienti</th>
                             <th>Prezzo</th>
                             <th>Conferma</th>
                         </tr>
@@ -84,7 +86,7 @@
                                 <input type="text" id="txtPrezzoU" name="txtPrezzoU">
                             </td>
                             <td>
-                                <input type="button" id="btnModifica" name="btnModifica" value='Modifica'>
+                                <input type="button" id="btnModifica" name="btnModifica" value='Modifica' onclick="modificaPizza();">
                             </td>
                         </tr>
                     </table>
@@ -109,7 +111,7 @@
                                 </select>
                             </td>
                             <td>
-                                <input type="button" id="btnCancella" name="btnCancella" value='Cancella'>
+                                <input type="button" id="btnCancella" name="btnCancella" value='Cancella' onclick="cancellaPizza();">
                             </td>
                         </tr>
                     </table>

@@ -85,3 +85,43 @@ function confPrenotazione(){
         document.getElementById("pizze").submit();
     }
 }
+
+function aggiungiPizza (){
+        var nome=document.getElementById("txtNome");
+        var ingr=document.getElementById("txtIngr");
+        var prezzo=document.getElementById("txtPrezzo");
+        var error=false;
+        
+        if (nome.value===""||ingr.value===""||prezzo===""){
+            alert("Compilare tutti i campi");
+            error=true;
+        }
+        
+        if (!error) document.getElementById("insert").submit();
+    }
+    
+function modificaPizza (){
+        var nome=document.getElementById("cmbPizza");
+        var ingr=document.getElementById("txtIngrU");
+        var prezzo=document.getElementById("txtPrezzoU");
+        var error=false;
+        
+        if (nome.value==="Scegli la pizza"||ingr.value===""||prezzo===""){
+            alert("Compilare tutti i campi");
+            error=true;
+        }
+        
+        if (!error) document.getElementById("update").submit();
+    }
+    
+function cancellaPizza (){
+        var nome=document.getElementById("cmbPizzaD");
+        var error=false;
+        
+        if (nome.value==="Scegli la pizza"){
+            alert("Comilare tutti i campi");
+            error=true;
+        }
+        
+        if (!error) document.getElementById("delete").submit();
+    }
