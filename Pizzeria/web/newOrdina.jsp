@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="style.css" />
         <script type="text/javascript" src="scripts.js"></script>
-        <title>New Ordina</title>
+        <title>Ordina</title>
     </head>
     <body>
         <header>
@@ -56,12 +56,12 @@
                                 <th>Conferma</th>
                             </tr>
                         </table>
-                </div>
-                <div class="divMain" id="divMain">
+                <table class="tblReg">
                     <input type="hidden" id="action" name="action" value="validate"/>
                     <input type="hidden" id="rowCount" name="rowCount" value="0"/>
                     <input type="button" id="prenota" onclick="confPrenotazione();" value="Prenota"/>
-                </div>
+                </table>
+            </div>
             </form>
         </article>
         <aside>
