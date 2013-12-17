@@ -168,4 +168,22 @@ public class Model {
         }
         return ret;
     }
+    
+    public ArrayList<String> getPizza (String nome){
+        ArrayList<String> ret= new ArrayList<String>();
+        try{
+            Connection conn = DriverManager.getConnection(url, this.user, pwd);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM Pizze WHERE nome='"+nome+"'");
+            while(rs.next()){
+                ret.add(rs.getString("Ingredienti"));
+                ret.add(rs.getString("Prezzo"));
+            }
+            conn.close();
+        }catch (SQLException ex) {
+            ex.printStackTrace();            
+            ret = null;
+        }
+        return ret;
+    }
 }
