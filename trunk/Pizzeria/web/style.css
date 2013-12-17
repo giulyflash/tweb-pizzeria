@@ -9,7 +9,9 @@ html {
 
 body {
     height: 80%;
-    background-color: #ff9933;
+    background:url("images/sfondo.png");
+    background-attachment: scroll;
+    background-repeat: no-repeat;
     overflow:visible;
 }
 
@@ -20,7 +22,6 @@ header {
 
 article {
     width: 50%;
-    background-color: white;
     float: left;
     border-bottom: 2px solid black;
     border-top: 2px solid black;
@@ -74,7 +75,7 @@ footer{
     width: 100%;
     text-align: center;
     font: 170% Georgia;
-    color: blue;
+    color: greenyellow;
     margin: 15px;
 }
 
@@ -82,7 +83,7 @@ footer{
     width: 100%;
     text-align: center;
     font: 150% Georgia;
-    color: green;
+    color: greenyellow;
 }
 
 .separatore {
@@ -190,4 +191,11 @@ footer{
     width: 100%;
     font: 100% Georgia;
     color: blue;
+}
+
+.liColored{
+    color:red;
+    font-family:Verdana bold sans-serif;
+    font-size:120%;
+    font-weight: bold;
 }
