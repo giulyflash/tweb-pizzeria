@@ -54,7 +54,7 @@ public class Controller extends HttpServlet {
                String utente = (String)session.getAttribute("username");
                String ruolo = (String)session.getAttribute("ruolo");
                if (utente==null) request.setAttribute("messaggio", "Fai il login per accedere ai servizi oppure registrati");
-               else request.setAttribute ("messaggio", "Sei loggato come "+utente+", con il ruolo di "+ruolo);
+               else request.setAttribute ("messaggio", "Sei loggato con il ruolo di "+ruolo);
                request.setAttribute("pizze",model.getCatalogoPizze());
                RequestDispatcher dsp = getServletContext().getRequestDispatcher("/index.jsp");
                dsp.forward(request, response);
@@ -81,7 +81,7 @@ public class Controller extends HttpServlet {
                    HttpSession session = request.getSession();
                    session.setAttribute("username", username);
                    session.setAttribute("ruolo", role);
-                   request.setAttribute("messaggio", "Benvenuto, " + username);
+                   request.setAttribute("messaggio", "Sei loggato con il ruolo di "+role);
                }
                request.setAttribute("pizze", model.getCatalogoPizze());
                RequestDispatcher dsp = getServletContext().getRequestDispatcher("/index.jsp");

@@ -49,7 +49,7 @@ public class UtentiBean {
                if (ruolo.compareTo("Amministratore")==0){
                 userInterface+="<form id=\"frmLogin\" action=\"Controller\" method=\"POST\">\n" +
 "                        <input type=\"hidden\" id=\"action\" name=\"action\" value=\"logout\" />\n" +
-"                        <p> Benvenuto, " + username + " </p>\n" +
+"                        <p class=\"sottotitolo\"> Benvenuto, " + username + " </p>\n" +
 "                        <img src=\"images/admin.jpg\" class=\"image\"/>"+
 "                        <p>" +
 "                        <input class=\"centered\" id=\"btnLogout\" name=\"btnLogout\" type=\"submit\" value=\"Logout\" />\n" +
@@ -80,9 +80,9 @@ public class UtentiBean {
                 menu=menu+"<h3 class=\"intestazione\"> Menu </h3>";
                 menu=menu+"<p>";
                 menu=menu+"<ul>";
-                menu=menu+"<li> <a href=\"Controller?action=home\" onmouseover=\"rilievo\">Home</a> </li>";
-                menu=menu+"<li> <a href=\"Controller?action=ordina\">Fai un nuovo ordine </a> </li>";
-                menu=menu+"<li> <a href=\"Controller?action=prenotazioni\">Visualizza i tuoi ordini </a> </li>";
+                menu=menu+"<li> <a class=\"liColored\" href=\"Controller?action=home\" onmouseover=\"rilievo\">Home</a> </li>";
+                menu=menu+"<li> <a class=\"liColored\" href=\"Controller?action=ordina\">Fai un nuovo ordine </a> </li>";
+                menu=menu+"<li> <a class=\"liColored\" href=\"Controller?action=prenotazioni\">I tuoi ordini </a> </li>";
                 menu=menu+"</ul>";
                 menu=menu+"</p>";
                 menu=menu+"</nav>";
@@ -93,11 +93,11 @@ public class UtentiBean {
                 menu=menu+"<h3 class=\"intestazione\"> Menu </h3>";
                 menu=menu+"<p>";
                 menu=menu+"<ul>";
-                menu=menu+"<li> <a id=\"id\" href=\"Controller?action=home\">Home</a> </li>";
-                menu=menu+"<li> <a href=\"Controller?action=ordina\">Fai un nuovo ordine </a> </li>";
-                menu=menu+"<li> <a href=\"Controller?action=prenotazioni\">Visualizza i tuoi ordini </a> </li>";
-                menu=menu+"<li> <a href=\"Controller?action=storia\">Visualizza lo storico degli ordini </a> </li>";
-                menu=menu+"<li> <a href=\"Controller?action=modifica\">Modifica elenco pizze </a> </li>";
+                menu=menu+"<li> <a class=\"liColored\" href=\"Controller?action=home\">Home</a> </li>";
+                menu=menu+"<li> <a class=\"liColored\" href=\"Controller?action=ordina\">Nuovo ordine </a> </li>";
+                menu=menu+"<li> <a class=\"liColored\" href=\"Controller?action=prenotazioni\">I tuoi ordini </a> </li>";
+                menu=menu+"<li> <a class=\"liColored\" href=\"Controller?action=storia\">Storico degli ordini </a> </li>";
+                menu=menu+"<li> <a class=\"liColored\" href=\"Controller?action=modifica\">Modifica elenco pizze </a> </li>";
                 menu=menu+"</ul>";
                 menu=menu+"</p>";
                 menu=menu+"</nav>";
