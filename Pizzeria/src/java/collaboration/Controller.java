@@ -237,6 +237,13 @@ public class Controller extends HttpServlet {
                dsp.forward(request, response);
            }
            
+           
+           //storico ordinazioni
+           else if (action.equals("storia")){
+               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/storico.jsp");
+               dsp.forward(request, response);
+           }
+           
         } catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
             RequestDispatcher dsp = getServletContext().getRequestDispatcher("/error.jsp");
