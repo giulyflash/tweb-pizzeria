@@ -26,18 +26,31 @@ article {
     border-top: 2px solid black;
     border-left: 2px solid black;
     border-right: 2px solid black;
+    border-radius: 10px 10px 10px 10px;
     overflow:visible;
 }
 
 aside {
-    width: 24%;
+    width: 23%;
     float: left;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 1%;
     text-align: center;
 }
 
 nav{
-    width: 24%;
+    width: 23%;
     float: left;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-radius: 10px 10px 10px 10px;
+    margin-right: 1%;
 }
 
 footer{
@@ -177,4 +190,8 @@ footer{
     width: 100%;
     font: 100% Georgia;
     color: blue;
+}
+
+.rilievo{
+    font: 150% Comic Sans MS;
 }

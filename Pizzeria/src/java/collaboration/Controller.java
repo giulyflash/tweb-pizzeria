@@ -50,9 +50,11 @@ public class Controller extends HttpServlet {
            
            //visualizzazione index
            if(action==null||action.equals("home")) {
-               UtentiBean utenti = new UtentiBean();
-               if (utenti.getUsername()==null) request.setAttribute("messaggio", "Fai il login per accedere ai servizi oppure registrati");
-               else request.setAttribute ("messaggio", "Sei loggato come '<%= session.getAttribute(\"username\")%>', con il ruolo di '<%= session.getAttribute(\"ruolo\")%>'");
+               HttpSession session = request.getSession();
+               String utente = (String)session.getAttribute("username");
+               String ruolo = (String)session.getAttribute("ruolo");
+               if (utente==null) request.setAttribute("messaggio", "Fai il login per accedere ai servizi oppure registrati");
+               else request.setAttribute ("messaggio", "Sei loggato come "+utente+", con il ruolo di "+ruolo);
                request.setAttribute("pizze",model.getCatalogoPizze());
                RequestDispatcher dsp = getServletContext().getRequestDispatcher("/index.jsp");
                dsp.forward(request, response);
@@ -215,6 +217,24 @@ public class Controller extends HttpServlet {
                    dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
                    dsp.forward(request, response);
                }
+           }
+           
+           else if (action.equals("set")){
+               String nome=(String) request.getAttribute("cmbPizza");
+               ArrayList<String> pizza = new ArrayList<String>();
+               
+               pizza=model.getPizza(nome);
+               if (pizza!=null){
+                   request.setAttribute("txtIngrU", pizza.get(0));
+                   request.setAttribute("txtPrezzoU", pizza.get(1));
+               }
+               else{
+                   request.setAttribute("txtIngrU", "errore");
+                   request.setAttribute("txtPrezzoU", "errore");
+               }
+               request.setAttribute("messaggio", "");
+               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
+               dsp.forward(request, response);
            }
            
         } catch (SQLException ex) {
