@@ -125,17 +125,3 @@ function cancellaPizza (){
         
         if (!error) document.getElementById("delete").submit();
     }
-    
-function setValori(){
-    //prendere valore cmbPizza
-    //richiamare controller con action=set
-    var nome=document.getElementById("cmbPizza");
-    var error=false;
-    if (nome.value==="Scegli la pizza"||nome.value===""){
-        error=true;
-    }
-    
-    if(!error){
-        document.getElementById("set").action();
-    }
-}
