@@ -8,8 +8,10 @@ html {
 }
 
 body {
-    height: 80%;
-    background:url("images/sfondo.png");
+    height:99%;
+    width:99%;
+    background:url("images/sfondo2.jpg");
+    background-size: 100%;
     background-attachment: scroll;
     background-repeat: no-repeat;
     overflow:visible;
@@ -23,35 +25,41 @@ header {
 article {
     width: 50%;
     float: left;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
     border-radius: 10px 10px 10px 10px;
     overflow:visible;
+    background-color: #FFF;
+    opacity: 0.8;
 }
 
 aside {
     width: 23%;
     float: left;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
     border-radius: 10px 10px 10px 10px;
     margin-left: 1%;
-    text-align: center;
+    text-align: center; 
+    background-color: #FFF;
+    opacity: 0.8;
 }
 
 nav{
     width: 23%;
     float: left;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
     border-radius: 10px 10px 10px 10px;
     margin-right: 1%;
+    background-color: #FFF;
+    opacity: 0.8;
 }
 
 footer{
@@ -68,14 +76,14 @@ footer{
     width: 100%;
     text-align: center;
     font: 300% Comic Sans MS;
-    color: blue;
+    color: red;
 }
 
 .sottotitolo {    
     width: 100%;
     text-align: center;
     font: 170% Georgia;
-    color: #cc66ff;
+    color: blue;
     margin: 15px;
 }
 
@@ -83,7 +91,7 @@ footer{
     width: 100%;
     text-align: center;
     font: 150% Georgia;
-    color: #cc66ff;
+    color: blue;
 }
 
 .separatore {
