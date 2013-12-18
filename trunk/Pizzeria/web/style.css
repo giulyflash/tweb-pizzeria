@@ -75,7 +75,7 @@ footer{
     width: 100%;
     text-align: center;
     font: 170% Georgia;
-    color: greenyellow;
+    color: #cc66ff;
     margin: 15px;
 }
 
@@ -83,7 +83,7 @@ footer{
     width: 100%;
     text-align: center;
     font: 150% Georgia;
-    color: greenyellow;
+    color: #cc66ff;
 }
 
 .separatore {
@@ -198,4 +198,12 @@ footer{
     font-family:Verdana bold sans-serif;
     font-size:120%;
     font-weight: bold;
+}
+
+.tlbSelect{
+    width:40%;
+    margin-left:30%;
+    margin-right:30%;
+    margin-bottom: 5px;
+    float:left;
 }

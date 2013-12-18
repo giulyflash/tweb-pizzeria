@@ -28,7 +28,15 @@
                 <h3 class="error"><%=request.getAttribute("messaggio")%></h3>
             </div>
             <hr>
-            <div class='divMain' id='insersci'>
+            <table class="tlbSelect">
+                <tr>
+                    <td>Inserisci <input type="checkbox" id="chkInsert" onclick="makeVisible();"></td>
+                    <td>Modifica <input type="checkbox" id="chkUpdate" onclick="makeVisible();"></td>
+                    <td>Cancella <input type="checkbox" id="chkDelete" onclick="makeVisible();"></td>
+                </tr>  
+            </table>
+            <hr>
+            <div class='divMain' id='inserisci' hidden="true">
                 <div class="divMain">
                     <h3 class="sottotitolo">Inserisci</h3>
                 </div>
@@ -59,8 +67,8 @@
                 </table>
                 </form>
             </div>
-            <hr>
-            <div class='divMain' id='modifica'>
+            
+            <div class='divMain' id='modifica' hidden="true">
                 <div class="divMain">
                     <h3 class="sottotitolo">Modifica</h3>
                 </div>
@@ -92,8 +100,8 @@
                     </table>
                 </form>
             </div>
-            <hr>
-            <div class='divMain' id='cancella'>
+            
+            <div class='divMain' id='cancella' hidden="true">
                 <div class="divMain">
                     <h3 class="sottotitolo">Cancella</h3>
                 </div>

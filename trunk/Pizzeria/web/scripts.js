@@ -125,3 +125,18 @@ function cancellaPizza (){
         
         if (!error) document.getElementById("delete").submit();
     }
+
+function makeVisible(){
+    var insert=document.getElementById("chkInsert");
+    var update=document.getElementById("chkUpdate");
+    var cancella=document.getElementById("chkDelete");
+    
+    if(insert.checked) document.getElementById("inserisci").hidden=false;
+    else document.getElementById("inserisci").hidden=true;
+    
+    if(update.checked) document.getElementById("modifica").hidden=false;
+    else document.getElementById("modifica").hidden=true;
+    
+    if(cancella.checked) document.getElementById("cancella").hidden=false;
+    else document.getElementById("cancella").hidden=true;
+}
