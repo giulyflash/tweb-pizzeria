@@ -22,11 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import myBeans.PizzeBean;
 import myBeans.UtentiBean;
-
-/**
- *
- * @author st116680
- */
 public class Controller extends HttpServlet {
 
     /**
