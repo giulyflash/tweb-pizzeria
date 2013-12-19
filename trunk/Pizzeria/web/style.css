@@ -183,16 +183,31 @@ footer{
 }
 
 .divFooterDX{
-    width: 24%;
+    width: 15%;
     float: right;
     color: darkred;
+    margin-right:5%;
+    background-color: #FFF;
+    opacity: 0.8;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    border-radius: 10px 10px 10px 10px;
 }
 
 .divFooterSX{
-    width: 24%;
+    width: 15%;
     float: left;
     margin-left:5%;
     color: darkred;
+    background-color: #FFF;
+    opacity: 0.8;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    border-radius: 10px 10px 10px 10px;
 }
 
 .sottotitoloF {    
