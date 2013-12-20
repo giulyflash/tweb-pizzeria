@@ -102,6 +102,7 @@ public class Model {
         }
         return 1;
     }
+    
     public ArrayList<ArrayList<String>> getOrdini(String user){
         ArrayList<ArrayList<String>> ordini= new ArrayList<ArrayList<String>>();
         
@@ -114,6 +115,7 @@ public class Model {
                 ArrayList<String> pizza = new ArrayList<String>();
                 pizza.add(rs.getString("pizza"));
                 pizza.add(rs.getString("quantita"));
+                pizza.add(rs.getString("status"));
                 ordini.add(pizza);
             }    
             conn.close();

@@ -124,7 +124,7 @@ function cancellaPizza (){
         }
         
         if (!error) document.getElementById("delete").submit();
-    }
+}
 
 function makeVisible(){
     var insert=document.getElementById("chkInsert");

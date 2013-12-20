@@ -16,14 +16,17 @@
         <header>
             <h1 class="titolo">Visualizza Ordini: </h1>
         </header>
-                <jsp:include page="/menu.jsp"></jsp:include>
+        <jsp:include page="/menu.jsp"></jsp:include>
+        <form>
             <div class="divMain" id="divMain">
             <h3 class="intestazione">
                 Ecco i tuoi ordini:
             </h3>
-                <jsp:getProperty name="catalogoPizze" property="tabellaOrdini"></jsp:getProperty>
-            </div>                
-        </article> 
+            <jsp:getProperty name="catalogoPizze" property="tabellaOrdini"></jsp:getProperty>
+         </div> 
+         <input type="button" id="btnConfOrdini "name="btnConfOrdini" value="Conferma lista ordini" onclick="confermaOrdini()"/>
+         </article>
+        </form>        
         <aside>
                 <jsp:include page="/frmLogin.jsp"></jsp:include>
         </aside>

@@ -62,20 +62,38 @@ public class PizzeBean {
     }
 
     public String getTabellaOrdini() {
-        String table = "<table class=\"tblBordi\">";
-        table+="\n\t<tr>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t</tr>";
+        String table = "\"<table class=\\\"tblBordi\\\">\"";
+        
+        table+="\n\t<tr>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Consegnato</th></tr>";
         if(ordini!=null) {
             for(ArrayList<String> pizza : ordini) {
-                table+="\n\t<tr>\n\t";
-                table+="\t<td>" + pizza.get(0) +"</td>\n\t";
-                table+="\t<td>" + pizza.get(1) +"</td>\n\t";
-                table+="</tr>\n\t";
+                if(pizza.get(2).equals("true"))
+                {
+                    table+="\n\t<tr>\n\t";
+                    table+="\t<td>" + pizza.get(0) +"</td>\n\t";
+                    table+="\t<td>" + pizza.get(1) +"</td>\n\t";
+                    table+="\t<td>" + pizza.get(2) +"</td>\n\t";
+                    table+="</tr>\n\t";
+                }
+            }
+            table+="</table>";
+            table+="<hr>";
+            table+="\"<table class=\\\"tblBordi\\\">\"";
+            table+="\n\t<tr>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Consegnato</th></tr>";
+            for(ArrayList<String> pizza : ordini) {
+                if(pizza.get(2).equals("false"))
+                {
+                    table+="\n\t<tr>\n\t";
+                    table+="\t<td>" + pizza.get(0) +"</td>\n\t";
+                    table+="\t<td>" + pizza.get(1) +"</td>\n\t";
+                    table+="\t<td>" + pizza.get(2) +"</td>\n\t";
+                    table+="</tr>\n\t";
+                }
             }
         }
-        table+="</table>";
-        return table;
+       table+="</table>";
+       return table;
     }
-
     
     public void setTabella(String nome, String quantita){
         if (nome.compareTo("")==0) tabella="";
