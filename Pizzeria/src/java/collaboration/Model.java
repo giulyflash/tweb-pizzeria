@@ -116,6 +116,7 @@ public class Model {
                 pizza.add(rs.getString("pizza"));
                 pizza.add(rs.getString("quantita"));
                 pizza.add(rs.getString("status"));
+                pizza.add(getPrezzo(rs.getString("pizza")));
                 ordini.add(pizza);
             }    
             conn.close();
@@ -187,5 +188,22 @@ public class Model {
             ret = null;
         }
         return ret;
+    }
+    
+    public String getPrezzo (String pizza){
+        String prezzo=null;
+        try{
+            Connection conn = DriverManager.getConnection(url, this.user, pwd);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT prezzo FROM Pizze WHERE nome='"+pizza+"'");
+            while(rs.next()){
+                prezzo=rs.getString("prezzo");
+            }
+            conn.close();  
+        }catch (SQLException ex) {
+            ex.printStackTrace();            
+            prezzo = null;
+        }
+        return prezzo;
     }
 }
