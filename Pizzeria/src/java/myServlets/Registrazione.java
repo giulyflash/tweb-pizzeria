@@ -47,51 +47,26 @@ public class Registrazione extends HttpServlet {
         
         String username = request.getParameter("txtUsername");
         String pwd = request.getParameter("txtPassword");
-        /*String nome = request.getParameter("txtNome");
-        String cognome = request.getParameter("txtCognome");
-        String sesso = request.getParameter("txtSesso");
-        String datanasc = request.getParameter("txtDataNasc");*/
         String ruolo = request.getParameter("cmbRuolo");
         
-        if(username==null || pwd==null || /*nome==null || cognome==null || sesso==null || datanasc==null ||*/ ruolo==null)
+        if(username==null || pwd==null || ruolo==null)
             error="Parametri non validi!";
         else {
             try {
                 Model model=new Model();
                 Connection conn = DBUtil.createConnection(url, user, password);
-                //PreparedStatement stm = conn.prepareStatement("INSERT INTO utenti (username,password,"/*nome,cognome,sesso,datanasc,*/"ruolo) VALUES(?,?,?,?,?,?,?)");
-                /*int index = 1;
-                stm.setString(index++, username);
-                stm.setString(index++, pwd);
-                /*stm.setString(index++, nome);
-                stm.setString(index++, cognome);
-                stm.setString(index++, sesso);
-                stm.setDate(index++, Date.valueOf(datanasc));
-                stm.setString(index++, ruolo);
-
-                int rs = stm.executeUpdate();
-
-                if(rs==1) {
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT * FROM utenti WHERE nome='" + username + "'");
+                if (rs.next()){
+                    error="Username già presente!";
+                }
+                else{
+                    st.execute("INSERT INTO utenti VALUES ('" + username + "','" + pwd + "','" + ruolo + "')");
                     isValid=true;
                 }
-                else {
-                    stm = conn.prepareStatement("SELECT * FROM utenti WHERE username=?");
-                    stm.setString(1, username);
-                    ResultSet result = stm.executeQuery();
-                    if(result.next()) error="Username già presente!";
-                }*/
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM utenti WHERE nome='" + username + "'");
-            if (rs.next()){
-                error="Username già presente!";
-            }
-            else{
-                st.execute("INSERT INTO utenti VALUES ('" + username + "','" + pwd + "','" + ruolo + "')");
-                isValid=true;
-            }
-            rs.close();
-            conn.close();
-            request.setAttribute("pizze", model.getCatalogoPizze());
+                rs.close();
+                conn.close();
+                request.setAttribute("pizze", model.getCatalogoPizze());
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
