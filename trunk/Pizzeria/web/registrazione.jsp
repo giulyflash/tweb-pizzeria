@@ -21,32 +21,9 @@
                         <%=request.getAttribute("error")%>
                         <%
                             if(session.getAttribute("user")!=null) {%>
-                            Registrazione completata con successo!
-                        <%} else {%>
-                        <table id="tblReg" class="tblReg">
-                            <!--tr>
-                                <td class="tdLabel">Nome:</td>
-                                <td class="tdInput"><input class="inputText" type="text" id="txtNome" name="txtNome" /></td>
-                            </tr>
-                            <tr>
-                                <td class="tdLabel">Cognome:</td>
-                                <td class="tdInput"><input class="inputText" type="text" id="txtCognome" name="txtCognome" /></td>
-                            </tr>                        
-                            <tr>
-                                <td class="tdLabel">Data di nascita:</td>
-                                <td class="tdInput"><input class="inputText" type="date" id="txtDataNasc" name="txtDataNasc" /></td>
-                            </tr>
-                            <tr>
-                                <td class="tdLabel">Sesso:</td>
-                                <td class="tdInput">
-                                    M<input type="radio" id="rdbM" name="rdbSesso" value="M" checked />
-                                    F<input type="radio" id="rdbF" name="rdbSesso" value="F" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="tdSpazio"></td>
-                                <td class="tdSpazio"></td>
-                            </tr-->
+                            Sei già registrato
+                        <%}%>
+                        <table id="tblReg" class="tlbSelect">
                             <tr>
                                 <td class="tdLabel">Username:</td>
                                 <td class="tdInput"><input class="inputText" type="text" id="txtUsername" name="txtUsername" /></td>
@@ -66,12 +43,6 @@
                             </tr>
                         </table>
                         <input type="button" id="btnOk" value="Conferma" onclick="validaReg();"/>
-                            <% if(request.getAttribute("error")!=null) {%>
-                            <br/>
-                            <div class="error"><% request.getAttribute("error"); %> </div>
-                            <%}%>
-                        <%}%>
-                    </div>
                 </form>
             </article>
         </div>
