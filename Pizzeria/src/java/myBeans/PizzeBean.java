@@ -2,10 +2,6 @@ package myBeans;
 
 import java.util.ArrayList;
 
-/**
- * bla
- * @author st116680
- */
 public class PizzeBean {
     private ArrayList<ArrayList<String>> pizze;
     private ArrayList<String> lista;
