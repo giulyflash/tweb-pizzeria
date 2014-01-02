@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 
 public class Model {
-    private String url = "jdbc:derby://localhost:1527/pizzeria2";
+    private String url = "jdbc:derby://localhost:1527/pizzeria";
     private String user = "test";
     private String pwd = "test";
     
