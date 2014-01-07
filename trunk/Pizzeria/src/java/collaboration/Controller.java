@@ -232,6 +232,32 @@ public class Controller extends HttpServlet {
                dsp.forward(request, response);
            }
            
+           //conferma degli ordini
+           else if (action.equals("arrivo")){
+               HttpSession session = request.getSession();
+               String utente= (String)session.getAttribute("username");
+               int rowCount = Integer.parseInt(request.getParameter("rowCount"));
+               RequestDispatcher dsp=null;
+               boolean error=false;
+               for (int i=0; i<rowCount; i++){
+                   String status=request.getParameter("chkOrdine"+(i+1));
+                   if (status!=null){
+                       //prendo i dati e faccio l'interrogazione
+                       //scelgo cosa fare se va a buon fine oppure no
+                       /*if (ret==0){
+                           request.setAttribute("messaggio", "Conferma fallita, riprovare");
+                           dsp= getServletContext().getRequestDispatcher("/visualizzaOrdini.jsp");
+                           error=true;
+                       }*/
+                   }
+               }
+               /*if (!error){
+                   request.setAttribute("messaggio", "Conferma eseguita correttamente");
+                   dsp= getServletContext().getRequestDispatcher("/index.jsp");
+               }
+               //request.setAttribute("pizze",model.getCatalogoPizze());
+               //dsp.forward(request, response)*/
+           }
            
            //storico ordinazioni
            else if (action.equals("storia")){

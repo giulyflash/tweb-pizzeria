@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 
 public class Model {
-    private String url = "jdbc:derby://localhost:1527/pizzeria";
+    private String url = "jdbc:derby://localhost:1527/pizzeria2";
     private String user = "test";
     private String pwd = "test";
     
@@ -205,5 +205,19 @@ public class Model {
             prezzo = null;
         }
         return prezzo;
+    }
+    
+    public int updateOrder(String utente, String pizza, String data){
+        int ret=1;
+        try{
+            Connection conn = DriverManager.getConnection(url, this.user, pwd);
+            Statement stm = conn.createStatement();
+            stm.execute("UPDATE TABLE Prenotazioni SET Status=true WHERE Utente='"+utente+"' AND Pizza='"+pizza+"' AND DataOrdine='"+data+"'");
+            conn.close();  
+        }catch (SQLException ex) {
+            ex.printStackTrace();            
+            ret = 0;
+        }
+        return ret;
     }
 }

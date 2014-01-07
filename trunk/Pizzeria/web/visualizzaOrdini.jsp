@@ -23,9 +23,11 @@
             </h3>
             </div> 
             <jsp:getProperty name="catalogoPizze" property="tabellaOrdini"></jsp:getProperty>
-         <div class="divMain">
-            <input type="button" id="btnConfOrdini "name="btnConfOrdini" value="Conferma lista ordini" onclick="confermaOrdini()"/>
-         </div>
+            <div class="divMain">
+                <input type="hidden" id="action" name="action" value="arrivo"/>
+                <input type="button" id="btnConfOrdini "name="btnConfOrdini" value="Conferma lista ordini" onclick="confermaOrdini()"/>
+            </div>
+            </form>
          </article>      
         <aside>
                 <jsp:include page="/frmLogin.jsp"></jsp:include>

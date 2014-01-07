@@ -140,3 +140,17 @@ function makeVisible(){
     if(cancella.checked) document.getElementById("cancella").hidden=false;
     else document.getElementById("cancella").hidden=true;
 }
+
+function confermaOrdini(){
+    var table=document.getElementById("conferma");
+    var rowCount=table.rows.lenght;
+    var i=1;
+    var errore=true;
+    
+    while (i<rowCount){
+        if ("chkOrdine"+i.checked) errore=false;
+    }
+    
+    if (errore===true) alert ("Seleziona almeno un ordine!");
+    else document.getElementById("Ordini").submit();
+}
