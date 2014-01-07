@@ -110,6 +110,13 @@ public class Controller extends HttpServlet {
                dsp.forward(request, response); 
            }
            
+           //storico ordinazioni
+           else if (action.equals("storia")){
+               request.setAttribute("ordini",model.getOrdiniTutti());
+               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/storico.jsp");
+               dsp.forward(request, response);
+           }
+           
            //gestione prenotazioni
            else if(action.equals("ordina")){
                request.setAttribute("lista",model.getLista());
@@ -257,12 +264,6 @@ public class Controller extends HttpServlet {
                }
                //request.setAttribute("pizze",model.getCatalogoPizze());
                //dsp.forward(request, response)*/
-           }
-           
-           //storico ordinazioni
-           else if (action.equals("storia")){
-               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/storico.jsp");
-               dsp.forward(request, response);
            }
            
         } catch (SQLException ex) {
