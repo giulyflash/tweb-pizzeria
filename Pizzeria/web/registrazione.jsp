@@ -16,7 +16,7 @@
                 <h3 class="intestazione">
                     Inserisci i tuoi dati
                 </h3>
-                <form id="frmReg" action="Registrazione" method="POST">
+                <form id="frmReg" action="Registrazione" method="POST">                    
                     <div class="divMain" id="divMain" >
                         <%=request.getAttribute("error")%>
                         <%

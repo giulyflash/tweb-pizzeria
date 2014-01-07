@@ -75,9 +75,11 @@ public class PizzeBean {
                 }
             }
             table+="</table>";
+            table+="<form id=\"Ordini\" name=\"Ordini\" action=\"Controller\" method=\"POST\">";
             table+="<hr>";
-            table+="<table class=\"tblBordi\">";
+            table+="<table class=\"tblBordi\" id=\"conferma\">";
             table+="\n\t<tr>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Consegnato</th></tr>";
+            int i=1;
             for(ArrayList<String> pizza : ordini) {
                 if(pizza.get(2).equals("false"))
                 {
@@ -86,9 +88,10 @@ public class PizzeBean {
                     table+="\t<td>" + pizza.get(0) +"</td>\n\t";
                     table+="\t<td>" + pizza.get(1) +"</td>\n\t";
                     table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
-                    table+="\t<td>" + pizza.get(2) +"</td>\n\t";
+                    table+="\t<td><input type=\"checkbox\" name=\"chkOrdine"+i+"\"></td>\n\t";
                     table+="</tr>\n\t";
                 }
+                i++;
             }
         }
        table+="</table>";
