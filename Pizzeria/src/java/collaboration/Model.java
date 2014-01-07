@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 
 public class Model {
-    private String url = "jdbc:derby://localhost:1527/pizzeria2";
+    private String url = "jdbc:derby://localhost:1527/pizzeria";
     private String user = "test";
     private String pwd = "test";
     
@@ -117,6 +117,33 @@ public class Model {
                 pizza.add(rs.getString("quantita"));
                 pizza.add(rs.getString("status"));
                 pizza.add(getPrezzo(rs.getString("pizza")));
+                ordini.add(pizza);
+            }    
+            conn.close();
+        }catch (SQLException ex) {
+            ex.printStackTrace();            
+            ordini = null;
+        }
+        return ordini;
+    }
+    
+    public ArrayList<ArrayList<String>> getOrdiniTutti(){
+        ArrayList<ArrayList<String>> ordini= new ArrayList<ArrayList<String>>();
+        
+        try{
+            Connection conn = DriverManager.getConnection(url, this.user, pwd);
+            String query="SELECT * FROM Prenotazioni ORDER BY utente";
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(query);
+            while(rs.next()) {
+                ArrayList<String> pizza = new ArrayList<String>();
+                pizza.add(rs.getString("utente"));
+                pizza.add(rs.getString("pizza"));
+                pizza.add(rs.getString("quantita"));
+                pizza.add(rs.getString("status"));
+                pizza.add(getPrezzo(rs.getString("pizza")));
+               // pizza.add(rs.getTimestamp("dataconsegna"));
+                pizza.add(rs.getString("dataconsegna"));
                 ordini.add(pizza);
             }    
             conn.close();

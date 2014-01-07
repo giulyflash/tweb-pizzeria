@@ -5,6 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<jsp:useBean  id="catalogoPizze" scope="request" class="myBeans.PizzeBean"></jsp:useBean>
+<jsp:setProperty name="catalogoPizze" property="ordini" value='<%=request.getAttribute("ordini")%>'></jsp:setProperty>
+<jsp:useBean id="utente" scope="session" class="myBeans.UtentiBean"></jsp:useBean>
+<jsp:setProperty name="utente" property="username" value='<%=session.getAttribute("username")%>'></jsp:setProperty>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,9 +25,10 @@
         </header>
         <jsp:include page="/menu.jsp"></jsp:include>
             <div class="divMain" id="divMain">
-                <h2 class="sottotitolo"> Tutte le orinazioni:</h2>
+                <h2 class="sottotitolo"> Tutte le ordinazioni:</h2>
+                
             <hr>
-                <!--elenco degli ordini-->
+                <jsp:getProperty name="catalogoPizze" property="tabellaOrdiniCompleta"></jsp:getProperty>
         </article>
         <aside>
                 <jsp:include page="/frmLogin.jsp"></jsp:include>

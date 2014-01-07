@@ -98,6 +98,48 @@ public class PizzeBean {
        return table;
     }
     
+    public String getTabellaOrdiniCompleta() {;
+        String table = "<table class=\"tblBordi\">";
+        double prezzo=0;
+        table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Data Consegna</th></tr>";
+        if(ordini!=null) {
+            for(ArrayList<String> pizza : ordini) {
+                if(pizza.get(3).equals("true"))
+                {
+                    prezzo=Double.parseDouble(pizza.get(2))*Double.parseDouble(pizza.get(4));
+                    table+="\n\t<tr>\n\t";
+                    table+="\t<td>" + pizza.get(0) +"</td>\n\t";
+                    table+="\t<td>" + pizza.get(1) +"</td>\n\t";
+                    table+="\t<td>" + pizza.get(2) +"</td>\n\t";
+                    table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
+                    table+="\t<td>" + pizza.get(5) +"</td>\n\t";
+                    table+="</tr>\n\t";
+                }
+            }
+            table+="</table>";
+            table+="<form id=\"Ordini\" name=\"Ordini\" action=\"Controller\" method=\"POST\">";
+            table+="<hr>";
+            table+="<table class=\"tblBordi\" id=\"conferma\">";
+            table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t</tr>";
+            int i=1;
+            for(ArrayList<String> pizza : ordini) {
+                if(pizza.get(3).equals("false"))
+                {
+                    prezzo=Double.parseDouble(pizza.get(2))*Double.parseDouble(pizza.get(4));
+                    table+="\n\t<tr>\n\t";
+                    table+="\t<td>" + pizza.get(0) +"</td>\n\t";
+                    table+="\t<td>" + pizza.get(1) +"</td>\n\t";
+                    table+="\t<td>" + pizza.get(2) +"</td>\n\t";
+                    table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
+                    table+="</tr>\n\t";
+                }
+                i++;
+            }
+        }
+       table+="</table>";
+       return table;
+    }
+    
     public void setTabella(String nome, String quantita){
         if (nome.compareTo("")==0) tabella="";
         else{
