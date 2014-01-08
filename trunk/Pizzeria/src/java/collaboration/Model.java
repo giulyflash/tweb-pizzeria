@@ -1,5 +1,6 @@
 package collaboration;
 
+import database.DBUtil;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -244,6 +245,25 @@ public class Model {
             conn.close();  
         }catch (SQLException ex) {
             ex.printStackTrace();            
+            ret = 0;
+        }
+        return ret;
+    }
+    
+    public int insertUser(String nome, String password){
+        int ret=1;
+        try{
+            Connection conn = DBUtil.createConnection(url, user, pwd);
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM utenti WHERE nome='" + nome + "'");
+            if (rs.next())ret=0;
+            else{
+                st.execute("INSERT INTO utenti VALUES ('" + nome + "','" + password + "','Cliente')");
+            }
+            rs.close();
+            conn.close();
+        }catch (SQLException e) {
+            e.printStackTrace();            
             ret = 0;
         }
         return ret;

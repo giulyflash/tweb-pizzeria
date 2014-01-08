@@ -24,7 +24,8 @@
                 <h3 class="intestazione">
                     Inserisci i tuoi dati
                 </h3>
-                <form id="frmReg" action="Registrazione" method="POST">                    
+                <form id="frmReg" action="Controller" method="POST">
+                    <input type="hidden" name="action" id="action" value="confreg">
                     <div class="divMain" id="divMain" >
                         <%=request.getAttribute("error")%>
                         <%
@@ -39,15 +40,6 @@
                             <tr>
                                 <td class="tdLabel">Password:</td>
                                 <td class="tdInput"><input class="inputText" type="password" id="txtPassword" name="txtPassword" /></td>
-                            </tr>
-                            <tr>
-                                <td class="tdLabel">Ruolo:</td>
-                                <td class="tdInput">
-                                    <select class="inputSelect" id="cmbRuolo" name="cmbRuolo">
-                                        <option id="optCliente" value="Cliente">Cliente</option>
-                                        <option id="optAmministratore" value="Amministratore">Amministratore</option>
-                                    </select>                        
-                                </td>
                             </tr>
                         </table>
                         <input type="button" id="btnOk" value="Conferma" onclick="validaReg();"/>

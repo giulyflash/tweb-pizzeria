@@ -1,7 +1,6 @@
 function validaReg() {
     var txtUsername = document.getElementById("txtUsername");
     var txtPassword = document.getElementById("txtPassword");
-    var cmbRuolo = document.getElementById("cmbRuolo");
     
     var error = false;
     
