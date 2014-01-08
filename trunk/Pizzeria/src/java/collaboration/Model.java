@@ -74,7 +74,7 @@ public class Model {
         ArrayList<String>lista = new ArrayList<String>();
         try{
             Connection conn = DriverManager.getConnection(url, user, pwd);
-            String query = "SELECT * FROM pizze";
+            String query = "SELECT * FROM pizze WHERE datafine is null";
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while(rs.next()) {
