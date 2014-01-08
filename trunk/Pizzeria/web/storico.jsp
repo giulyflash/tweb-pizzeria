@@ -1,9 +1,3 @@
-<%-- 
-    Document   : storico
-    Created on : 17-dic-2013, 15.08.06
-    Author     : Francesco
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <jsp:useBean  id="catalogoPizze" scope="request" class="myBeans.PizzeBean"></jsp:useBean>

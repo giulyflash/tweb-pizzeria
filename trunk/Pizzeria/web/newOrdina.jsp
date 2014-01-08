@@ -1,9 +1,3 @@
-<%-- 
-    Document   : newOrdina
-    Created on : 12-dic-2013, 9.37.20
-    Author     : Francesco
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean  id="catalogoPizze" scope="request" class="myBeans.PizzeBean"></jsp:useBean>
 <jsp:setProperty name="catalogoPizze" property="lista" value='<%=request.getAttribute("lista")%>'></jsp:setProperty>

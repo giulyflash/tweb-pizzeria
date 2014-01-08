@@ -16,10 +16,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Stefano
- */
 public class Login extends HttpServlet {
 
     /**
