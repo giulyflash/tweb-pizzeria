@@ -60,17 +60,19 @@ public class PizzeBean {
     public String getTabellaOrdini() {;
         String table = "<table class=\"tblBordi\">";
         double prezzo=0;
+        String dataconsegna = "";
         table+="\n\t<tr>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Consegnato</th></tr>";
         if(ordini!=null) {
             for(ArrayList<String> pizza : ordini) {
                 if(pizza.get(2).equals("true"))
                 {
                     prezzo=Double.parseDouble(pizza.get(1))*Double.parseDouble(pizza.get(3));
+                    dataconsegna = pizza.get(4).substring(0,10);
                     table+="\n\t<tr>\n\t";
                     table+="\t<td>" + pizza.get(0) +"</td>\n\t";
                     table+="\t<td>" + pizza.get(1) +"</td>\n\t";
                     table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
-                    table+="\t<td>" + pizza.get(2) +"</td>\n\t";
+                    table+="\t<td>" + dataconsegna +"</td>\n\t";
                     table+="</tr>\n\t";
                 }
             }
@@ -101,18 +103,20 @@ public class PizzeBean {
     public String getTabellaOrdiniCompleta() {;
         String table = "<table class=\"tblBordi\">";
         double prezzo=0;
+        String dataconsegna = "";
         table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Data Consegna</th></tr>";
         if(ordini!=null) {
             for(ArrayList<String> pizza : ordini) {
                 if(pizza.get(3).equals("true"))
                 {
                     prezzo=Double.parseDouble(pizza.get(2))*Double.parseDouble(pizza.get(4));
+                    dataconsegna = pizza.get(5).substring(0,10);
                     table+="\n\t<tr>\n\t";
                     table+="\t<td>" + pizza.get(0) +"</td>\n\t";
                     table+="\t<td>" + pizza.get(1) +"</td>\n\t";
                     table+="\t<td>" + pizza.get(2) +"</td>\n\t";
                     table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
-                    table+="\t<td>" + pizza.get(5) +"</td>\n\t";
+                    table+="\t<td>" + dataconsegna +"</td>\n\t";
                     table+="</tr>\n\t";
                 }
             }

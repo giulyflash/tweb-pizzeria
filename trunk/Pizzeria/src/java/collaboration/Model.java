@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 
 public class Model {
-    private String url = "jdbc:derby://localhost:1527/pizzeria";
+    private String url = "jdbc:derby://localhost:1527/pizzeria2";
     private String user = "test";
     private String pwd = "test";
     
@@ -117,6 +117,7 @@ public class Model {
                 pizza.add(rs.getString("quantita"));
                 pizza.add(rs.getString("status"));
                 pizza.add(getPrezzo(rs.getString("pizza")));
+                pizza.add(rs.getString("dataconsegna"));
                 ordini.add(pizza);
             }    
             conn.close();
@@ -142,8 +143,8 @@ public class Model {
                 pizza.add(rs.getString("quantita"));
                 pizza.add(rs.getString("status"));
                 pizza.add(getPrezzo(rs.getString("pizza")));
-               // pizza.add(rs.getTimestamp("dataconsegna"));
                 pizza.add(rs.getString("dataconsegna"));
+                
                 ordini.add(pizza);
             }    
             conn.close();
