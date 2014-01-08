@@ -20,10 +20,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import org.apache.catalina.Session;
 
-/**
- *
- * @author Stefano
- */
 public class Registrazione extends HttpServlet {
 
     /**

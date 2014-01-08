@@ -2,10 +2,6 @@ package database;
 
 import java.sql.*;
 
-/**
- *
- * @author Stefano
- */
 public class DBUtil {
     public static Connection createConnection(String url,String user,String password) {
         Connection conn = null;
