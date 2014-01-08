@@ -35,6 +35,7 @@ function aggiungiPrenotazione(){
     var table=document.getElementById("table");
     var rowCount = parseInt(table.rows.length);
     var error=false;
+    var i=0;
     
     if (cmbPizza.value==="" || cmbPizza.value==="Scegli la pizza" || txtQuantita.value==="" || txtQuantita.value==="0"){
         alert ("Completare correttamente tutti i campi");
@@ -66,6 +67,10 @@ function aggiungiPrenotazione(){
             cell1.appendChild(element1);
             cmbPizza.value="Scegli la pizza";
             txtQuantita.value=null;
+            while (i<cmbPizza.options.length){
+                if (cmbPizza.options[i].value===element1.value) cmbPizza.options[i]=null;
+                i++;
+            }
     }
 }
 
