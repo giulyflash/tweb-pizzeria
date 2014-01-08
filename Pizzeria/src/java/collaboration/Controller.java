@@ -65,7 +65,7 @@ public class Controller extends HttpServlet {
                
                if(role==null) {
                    request.setAttribute("messaggio", "Errore nell'autenticazione");
-                   RequestDispatcher dsp = getServletContext().getRequestDispatcher("/error.jsp");
+                   RequestDispatcher dsp = getServletContext().getRequestDispatcher("/index.jsp");
                    dsp.forward(request, response);
                    return;
                }
@@ -87,6 +87,26 @@ public class Controller extends HttpServlet {
                request.setAttribute("error", " ");
                RequestDispatcher dsp= getServletContext().getRequestDispatcher("/registrazione.jsp");
                dsp.forward(request, response);
+           }
+           
+           
+           else if (action.equals("confreg")){
+               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/registrazione.jsp");
+               RequestDispatcher dsp2= getServletContext().getRequestDispatcher("/index.jsp");
+               String username = request.getParameter("txtUsername");
+               String pwd = request.getParameter("txtPassword");
+               int ret=0;
+               
+               ret=model.insertUser(username, pwd);
+               if (ret==0){
+                   request.setAttribute("messaggio", "Registrazione fallita, riprovare");
+                   dsp.forward(request, response);
+               }
+               else {
+                   request.setAttribute("messaggio", "Registrazione avvenuta correttamente");
+                   request.setAttribute("pizze",model.getCatalogoPizze());
+                   dsp2.forward(request, response);
+               }
            }
            
            else if (action.equals("logout")){
