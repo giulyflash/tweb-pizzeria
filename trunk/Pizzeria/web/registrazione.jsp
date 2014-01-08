@@ -12,7 +12,15 @@
             <header>
                 <h1 class="titolo">Registrazione</h1>
             </header>
-            <article class="articleCenter">
+            <nav>
+               <h3 class=intestazione> Menu </h3>
+                <p>
+                <ul>
+                <li> <a class=liColored href="Controller?action=home">Home</a> </li>
+                </ul>
+                </p>
+            </nav>
+            <article>
                 <h3 class="intestazione">
                     Inserisci i tuoi dati
                 </h3>
