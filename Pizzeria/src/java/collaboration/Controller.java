@@ -241,6 +241,19 @@ public class Controller extends HttpServlet {
                }
            }
            
+           else if (action.equals("import")){
+               String xml = "<pizza>";
+               String[] ret= null;
+               String nome=request.getParameter("nome");
+               ret=model.getAttributi(nome);
+               if (ret!= null){
+                   xml+="<ingredienti>"+ret[0]+"</ingredienti>";
+                   xml+="<prezzo>"+ret[1]+"</prezzo>";
+               }
+               xml+="</pizza>";
+               response.getWriter().write(xml);
+           }
+           
            else if (action.equals("set")){
                String nome=(String) request.getAttribute("cmbPizza");
                ArrayList<String> pizza = new ArrayList<String>();
