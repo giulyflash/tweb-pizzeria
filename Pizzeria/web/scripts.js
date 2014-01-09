@@ -53,6 +53,7 @@ function aggiungiPrenotazione(){
             element1.type = "text";
             element1.name = "txtNome"+rowCount;
             element1.value= cmbPizza.value;
+            element1.setAttribute ("class","textbox");
             element1.readOnly=true;
             element2.type = "number";
             element2.name = "txtNum"+rowCount;

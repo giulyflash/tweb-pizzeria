@@ -230,3 +230,11 @@ footer{
     margin-bottom: 7px;
     float:left;
 }
+
+.textbox{
+    border:0px;
+    background-color: transparent;
+    font-size: 100%;
+    color: green;
+    text-align:center;
+}
