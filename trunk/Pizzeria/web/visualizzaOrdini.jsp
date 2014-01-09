@@ -21,6 +21,9 @@
             <h3 class="intestazione">
                 Ecco i tuoi ordini:
             </h3>
+            <div class="divMain" id="divMain">
+                <h3 class="error"><%=request.getAttribute("messaggio")%></h3>
+            </div>
             </div> 
             <jsp:getProperty name="catalogoPizze" property="tabellaOrdini"></jsp:getProperty>
             <div class="divMain">
