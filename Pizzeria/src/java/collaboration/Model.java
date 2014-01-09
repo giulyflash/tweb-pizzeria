@@ -7,11 +7,10 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
-
-
+import java.text.DateFormat;
 
 public class Model {
-    private String url = "jdbc:derby://localhost:1527/pizzeria";
+    private String url = "jdbc:derby://localhost:1527/pizzeria2";
     private String user = "test";
     private String pwd = "test";
     
@@ -244,7 +243,15 @@ public class Model {
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement stm = conn.createStatement();
-            stm.execute("UPDATE TABLE Prenotazioni SET Status=true AND dataconsegna=current timestamp WHERE Utente='"+utente+"' AND Pizza='"+pizza+"' AND DataOrdine='"+data+"'");
+            ResultSet rs=stm.executeQuery ("SELECT dataordine FROM prenotazioni");
+            while (rs.next()){
+                DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+                Timestamp ts = rs.getTimestamp("dataordine");
+                String datedb = date.format(ts);
+                if (datedb.compareTo(data)==0){
+                    stm.execute("UPDATE Prenotazioni SET Status=true,DataConsegna=current timestamp WHERE Utente='"+utente+"' AND Pizza='"+pizza+"'");
+                }          
+            }
             conn.close();  
         }catch (SQLException ex) {
             ex.printStackTrace();            

@@ -89,11 +89,11 @@ public class PizzeBean {
                     prezzo=Double.parseDouble(pizza.get(1))*Double.parseDouble(pizza.get(3));
                     dataordine = pizza.get(4).substring(0,10);
                     table+="\n\t<tr>\n\t";
-                    table+="\t<td><input type=\"textbox\" class=\"textbox\" name=\"txtPizza\" id=\"txtPizza\" value=\""+pizza.get(0)+"\"></td>\n\t";
+                    table+="\t<td><input type=\"textbox\" class=\"textbox\" name=\"txtPizza"+i+"\" id=\"txtPizza"+i+"\" value=\""+pizza.get(0)+"\"></td>\n\t";
                     table+="\t<td>" + pizza.get(1) +"</td>\n\t";
                     table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
                     table+="\t<td><input type=\"checkbox\" name=\"chkOrdine"+i+"\" id=\"chkOrdine"+i+"\"></td>\n\t";
-                    table+="\t<td><input type=\"textbox\" class=\"textbox\" name=\"txtOrd\" id=\"txtOrd\" value=\""+dataordine+"\"></td>\n\t";
+                    table+="\t<td><input type=\"textbox\" class=\"textbox\" name=\"txtOrd"+i+"\" id=\"txtOrd"+i+"\" value=\""+dataordine+"\"></td>\n\t";
                     table+="</tr>\n\t";
                     i++;
                 }
