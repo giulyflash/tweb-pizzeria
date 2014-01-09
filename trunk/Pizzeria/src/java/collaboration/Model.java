@@ -268,4 +268,22 @@ public class Model {
         }
         return ret;
     }
+    
+    public String[] getAttributi (String nome){
+        String[]argo = new String[2];
+        try{
+            Connection conn = DriverManager.getConnection(url, this.user, pwd);
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM Pizze WHERE nome='"+nome+"'");
+            while(rs.next()){
+                argo[0]=rs.getString("ingredienti");
+                argo[1]=rs.getString("prezzo");
+            }
+            conn.close();  
+        }catch (SQLException ex) {
+            ex.printStackTrace();            
+            argo = null;
+        }
+        return argo;
+    }
 }

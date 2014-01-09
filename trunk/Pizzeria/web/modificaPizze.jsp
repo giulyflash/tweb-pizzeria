@@ -6,8 +6,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="style.css" />
         <script type="text/javascript" src="scripts.js" ></script>
+        <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
         <title>Modifica elenco pizze</title>
     </head>
     <body>
@@ -77,7 +78,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <select id="cmbPizza" name="cmbPizza" selected="Scegli la pizza">
+                                <select id="cmbPizza" name="cmbPizza" selected="Scegli la pizza" onchange="importa();">
                                     <jsp:getProperty name="catalogoPizze" property="listaPizze"></jsp:getProperty>
                                 </select>
                             </td>
