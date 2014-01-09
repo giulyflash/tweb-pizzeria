@@ -25,6 +25,7 @@
             <jsp:getProperty name="catalogoPizze" property="tabellaOrdini"></jsp:getProperty>
             <div class="divMain">
                 <input type="hidden" id="action" name="action" value="arrivo"/>
+                 <input type="hidden" id="rowCount" name="rowCount" value="0"/>
                 <input type="button" id="btnConfOrdini "name="btnConfOrdini" value="Conferma lista ordini" onclick="confermaOrdini()"/>
             </div>
             </form>
