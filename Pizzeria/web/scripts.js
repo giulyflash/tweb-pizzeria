@@ -158,3 +158,16 @@ function confermaOrdini(){
     if (errore===true) alert ("Seleziona almeno un ordine!");
     else document.getElementById("Ordini").submit();
 }
+
+function importa(){
+    $.post("Controller", {nome:document.getElementById("cmbPizza").value, action:"import"},
+            function(xmlResponse)
+            {
+               alert("ciao!");
+               var xml = $.parseXML(xmlResponse);
+               var prezzo = $(xml).find("prezzo").text()
+               var ingr = $(xml).find("ingredienti").text()
+               document.getElementById("txtIngrU").value=ingr;
+               document.getElementById("txtPrezzoU").value=prezzo;
+            })
+}
