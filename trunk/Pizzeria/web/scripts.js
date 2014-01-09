@@ -148,16 +148,23 @@ function makeVisible(){
 
 function confermaOrdini(){
     var table=document.getElementById("conferma");
-    var rowCount=table.rows.lenght;
-    var i=1;
+    var hidden=document.getElementById("rowCount");
+    var rowCount=table.rows.length;
+    var i=0;
     var errore=true;
     
-    while (i<rowCount){
-        if ("chkOrdine"+i.checked) errore=false;
+    while (i<rowCount-1){
+        if ((document.getElementById("chkOrdine"+(i+1))).checked) {
+            errore=false;
+        }
+        i++;
     }
     
     if (errore===true) alert ("Seleziona almeno un ordine!");
-    else document.getElementById("Ordini").submit();
+    else {
+        hidden.value=rowCount;
+        document.getElementById("Ordini").submit();
+    }
 }
 
 function importa(){

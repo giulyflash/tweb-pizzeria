@@ -58,10 +58,11 @@ public class PizzeBean {
     }
 
     public String getTabellaOrdini() {;
-        String table = "<table class=\"tblBordi\">";
+        String table = "<table class=\"tblBordi\" id=\"table\">";
         double prezzo=0;
         String dataconsegna = "";
-        table+="\n\t<tr>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Consegnato</th></tr>";
+        String dataordine = "";
+        table+="\n\t<tr>\n<th>Pizza</th>\n<th>Quantità</th>\n<th>Prezzo</th>\n<th>Consegnato</th></tr>";
         if(ordini!=null) {
             for(ArrayList<String> pizza : ordini) {
                 if(pizza.get(2).equals("true"))
@@ -80,20 +81,23 @@ public class PizzeBean {
             table+="<form id=\"Ordini\" name=\"Ordini\" action=\"Controller\" method=\"POST\">";
             table+="<hr>";
             table+="<table class=\"tblBordi\" id=\"conferma\">";
-            table+="\n\t<tr>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Consegnato</th></tr>";
+            table+="\n\t<tr>\n<th>Pizza</th>\n<th>Quantità</th>\n<th>Prezzo</th>\n<th>Consegnato</th><th>Data Ordine</th></tr>";
             int i=1;
             for(ArrayList<String> pizza : ordini) {
                 if(pizza.get(2).equals("false"))
                 {
                     prezzo=Double.parseDouble(pizza.get(1))*Double.parseDouble(pizza.get(3));
+                    dataordine = pizza.get(4).substring(0,10);
                     table+="\n\t<tr>\n\t";
-                    table+="\t<td>" + pizza.get(0) +"</td>\n\t";
+                    table+="\t<td><input type=\"textbox\" class=\"textbox\" name=\"txtPizza\" id=\"txtPizza\" value=\""+pizza.get(0)+"\"></td>\n\t";
                     table+="\t<td>" + pizza.get(1) +"</td>\n\t";
                     table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
-                    table+="\t<td><input type=\"checkbox\" name=\"chkOrdine"+i+"\"></td>\n\t";
+                    table+="\t<td><input type=\"checkbox\" name=\"chkOrdine"+i+"\" id=\"chkOrdine"+i+"\"></td>\n\t";
+                    table+="\t<td><input type=\"textbox\" class=\"textbox\" name=\"txtOrd\" id=\"txtOrd\" value=\""+dataordine+"\"></td>\n\t";
                     table+="</tr>\n\t";
+                    i++;
                 }
-                i++;
+                
             }
         }
        table+="</table>";

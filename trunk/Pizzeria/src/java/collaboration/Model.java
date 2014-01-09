@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 
 public class Model {
-    private String url = "jdbc:derby://localhost:1527/pizzeria2";
+    private String url = "jdbc:derby://localhost:1527/pizzeria";
     private String user = "test";
     private String pwd = "test";
     
@@ -118,6 +118,9 @@ public class Model {
                 pizza.add(rs.getString("quantita"));
                 pizza.add(rs.getString("status"));
                 pizza.add(getPrezzo(rs.getString("pizza")));
+                if((rs.getString("status")).compareTo("false")==0){
+                    pizza.add(rs.getString("dataordine"));
+                }
                 pizza.add(rs.getString("dataconsegna"));
                 ordini.add(pizza);
             }    
@@ -236,18 +239,18 @@ public class Model {
         return prezzo;
     }
     
-    public int updateOrder(String utente, String pizza, String data){
-        int ret=1;
+    public boolean updateOrder(String utente, String pizza, String data){
+        
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement stm = conn.createStatement();
-            stm.execute("UPDATE TABLE Prenotazioni SET Status=true WHERE Utente='"+utente+"' AND Pizza='"+pizza+"' AND DataOrdine='"+data+"'");
+            stm.execute("UPDATE TABLE Prenotazioni SET Status=true AND dataconsegna=current timestamp WHERE Utente='"+utente+"' AND Pizza='"+pizza+"' AND DataOrdine='"+data+"'");
             conn.close();  
         }catch (SQLException ex) {
             ex.printStackTrace();            
-            ret = 0;
+            return false;
         }
-        return ret;
+        return true;
     }
     
     public int insertUser(String nome, String password){

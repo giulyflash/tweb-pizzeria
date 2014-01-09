@@ -137,6 +137,31 @@ footer{
     font-size: 120%;
     color: green;
 }
+.tblOrdini {
+    width: 80%;
+    margin-left: 1%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    text-align: center;
+    border-collapse: collapse;
+    border: 2px solid cornflowerblue;
+}
+.tblOrdini tr{
+    border: 2px solid cornflowerblue;
+}
+
+.tblOrdini th{
+    border: 2px solid cornflowerblue;
+    font-size: 110%;
+    font-family: Helvetica;
+    color : red;
+}
+
+.tblOrdini td{
+    border: 2px solid cornflowerblue;
+    font-size: 100%;
+    color: green;
+}
 
 .error {
     color: red;

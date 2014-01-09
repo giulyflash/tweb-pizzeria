@@ -240,6 +240,7 @@ public class Controller extends HttpServlet {
                    dsp.forward(request, response);
                }
            }
+
            
            else if (action.equals("import")){
                String xml = "<pizza>";
@@ -282,21 +283,18 @@ public class Controller extends HttpServlet {
                for (int i=0; i<rowCount; i++){
                    String status=request.getParameter("chkOrdine"+(i+1));
                    if (status!=null){
-                       //prendo i dati e faccio l'interrogazione
-                       //scelgo cosa fare se va a buon fine oppure no
-                       /*if (ret==0){
-                           request.setAttribute("messaggio", "Conferma fallita, riprovare");
-                           dsp= getServletContext().getRequestDispatcher("/visualizzaOrdini.jsp");
-                           error=true;
-                       }*/
+                       
+                       String pizza= request.getParameter("txtPizza");
+                       String dataord= request.getParameter("txtOrdine");
+                       error=model.updateOrder(pizza, utente, dataord);
                    }
                }
-               /*if (!error){
+               if (!error){
                    request.setAttribute("messaggio", "Conferma eseguita correttamente");
                    dsp= getServletContext().getRequestDispatcher("/index.jsp");
                }
-               //request.setAttribute("pizze",model.getCatalogoPizze());
-               //dsp.forward(request, response)*/
+               request.setAttribute("pizze",model.getCatalogoPizze());
+               dsp.forward(request, response);
            }
            
         } catch (SQLException ex) {
