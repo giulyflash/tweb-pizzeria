@@ -64,7 +64,8 @@ public class PizzeBean {
         String dataconsegna = "";
         String dataordine = "";
         table+="<div><h3 class=\"sottotitolo\">Ordini consegnati</h3></div>";
-        if(ordini!=null) {
+        if(ordini.size()!=0){
+        //if(ordini!=null) {
             if (ordini.get(0).get(2).equals("false")){
                 table+="<div class=\"divMain\"><h4 class=\"error\">Non sono stati trovati ordini</h3></div>";
             }
@@ -83,7 +84,7 @@ public class PizzeBean {
                         table+="\t<td>" + dataconsegna +"</td>\n\t";
                         table+="</tr>\n\t";
                     }
-                    j++;
+                    else j++;
                 }
                 table+="</table>";
             }
@@ -92,6 +93,7 @@ public class PizzeBean {
             table+="<div><h3 class=\"sottotitolo\">Ordini non consegnati</h3></div>";
             if (index==j){
                 table+="<div class=\"divMain\"><h4 class=\"error\">Non sono stati trovati ordini</h3></div>";
+                table+="</table>";
             }
             else{
                 table+="<form id=\"Ordini\" name=\"Ordini\" action=\"Controller\" method=\"POST\">";
@@ -118,6 +120,14 @@ public class PizzeBean {
                 table+="\t<td><input type=\"button\" id=\"btnConfOrdini\" name=\"btnConfOrdini\" value=\"Conferma lista ordini\" onclick=\"confermaOrdini()\"/></td>";
             }
         }      
+        else {
+              table+="<div class=\"divMain\"><h4 class=\"error\">Non sono stati trovati ordini</h3></div>";
+              table+="</table>";
+              table+="<hr>";
+              table+="<div><h3 class=\"sottotitolo\">Ordini non consegnati</h3></div>";
+              table+="<div class=\"divMain\"><h4 class=\"error\">Non sono stati trovati ordini</h3></div>";
+              table+="</table>";
+        }
        return table;
     }
     

@@ -121,7 +121,7 @@ public class Controller extends HttpServlet {
                dsp.forward(request, response);
            }
            
-           //visualizzaazione utente
+           //visualizzazione utente
            else if(action.equals("prenotazioni")){
                HttpSession session = request.getSession();
                String utente= (String)session.getAttribute("username");
