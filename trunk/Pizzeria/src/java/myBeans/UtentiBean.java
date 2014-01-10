@@ -77,7 +77,7 @@ public class UtentiBean {
         {
             if (ruolo.compareTo("Cliente")==0){
                 menu="<nav>";
-                menu=menu+"<h3 class=\"intestazione\"> Menu </h3>";
+                menu=menu+"<h2 class=\"intestazione\"> Menu </h2>";
                 menu=menu+"<p>";
                 menu=menu+"<ul>";
                 menu=menu+"<li> <a class=\"liColored\" href=\"Controller?action=home\" onmouseover=\"rilievo\">Home</a> </li>";
@@ -117,13 +117,13 @@ public class UtentiBean {
 "                    <li>Mannu Giorgio</li>\n" +
 "                    <li>Marchisone Yari</li>\n" +
 "                </ul>\n" +
-"            </div>\n" +
+"            </div>\n" + 
 "            <div class=\"divFooterDX\">\n" +
-"                <h4 class=\"sottotitoloF\">Scrivere altro:</h4>\n" +
+"                <h4 class=\"sottotitoloF\">Contacts:</h4>\n" +
 "                <ul>\n" +
-"                    <li>Qui</li>\n" +
-"                    <li>E qui</li>\n" +
-"                    <li>E anche qua</li>\n" +
+"                    <li>Mail: <a href=\"mailto:info@pizzeriaonline.unito.it\">info@pizzeriaonline.unito.it</a></li>\n" +
+"                    <li>Telefono: +39 345 34 56 789</li>\n" +
+"                    <li>Indirizzo: Via Pessinetto 18, 10100 (TO)</li>\n" +
 "                </ul>\n" +
 "            </div>";
         return ret;

@@ -19,7 +19,7 @@
         </header>
         <jsp:include page="/menu.jsp"></jsp:include>
             <div class="divMain" id="divMain">
-                <h2 class="sottotitolo"> Tutte le ordinazioni:</h2>
+                <h2 class="intestazione"> Tutte le ordinazioni:</h2>
                 
             <hr>
                 <jsp:getProperty name="catalogoPizze" property="tabellaOrdiniCompleta"></jsp:getProperty>

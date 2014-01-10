@@ -18,18 +18,16 @@
         </header>
         <jsp:include page="/menu.jsp"></jsp:include>
             <div class="divMain" id="divMain">
-            <h3 class="intestazione">
+            <h2 class="intestazione">
                 Ecco i tuoi ordini:
-            </h3>
+            </h2>
             <div class="divMain" id="divMain">
                 <h3 class="error"><%=request.getAttribute("messaggio")%></h3>
             </div>
             </div> 
             <jsp:getProperty name="catalogoPizze" property="tabellaOrdini"></jsp:getProperty>
-            <div class="divMain">
                 <input type="hidden" id="action" name="action" value="arrivo"/>
-                 <input type="hidden" id="rowCount" name="rowCount" value="0"/>
-                <input type="button" id="btnConfOrdini "name="btnConfOrdini" value="Conferma lista ordini" onclick="confermaOrdini()"/>
+                <input type="hidden" id="rowCount" name="rowCount" value="0"/>
             </div>
             </form>
          </article>      

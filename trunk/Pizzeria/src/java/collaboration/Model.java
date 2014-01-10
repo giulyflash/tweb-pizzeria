@@ -108,7 +108,7 @@ public class Model {
         
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
-            String query="SELECT * FROM Prenotazioni WHERE Prenotazioni.utente='"+user+"'";
+            String query="SELECT * FROM Prenotazioni WHERE Prenotazioni.utente='"+user+"' ORDER BY dataconsegna";
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while(rs.next()) {
@@ -136,7 +136,7 @@ public class Model {
         
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
-            String query="SELECT * FROM Prenotazioni ORDER BY utente";
+            String query="SELECT * FROM Prenotazioni ORDER BY utente, dataconsegna";
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while(rs.next()) {
@@ -147,7 +147,6 @@ public class Model {
                 pizza.add(rs.getString("status"));
                 pizza.add(getPrezzo(rs.getString("pizza")));
                 pizza.add(rs.getString("dataconsegna"));
-                
                 ordini.add(pizza);
             }    
             conn.close();
@@ -175,12 +174,12 @@ public class Model {
         return ret;
     }
     
-    public boolean updatePizza (String nome, String ingredienti, String prezzo){
+    public boolean updatePizza (String nome, String newnome, String ingredienti, String prezzo){
         boolean ret=false;
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement stm = conn.createStatement();
-            stm.execute("UPDATE Pizze SET ingredienti='"+ingredienti+"',prezzo="+prezzo+" WHERE nome='"+nome+"'");
+            stm.execute("UPDATE Pizze SET nome='"+newnome+"', ingredienti='"+ingredienti+"',prezzo="+prezzo+" WHERE nome='"+nome+"'");
             conn.close();
         }catch (SQLException ex) {
             ex.printStackTrace();            
@@ -280,7 +279,7 @@ public class Model {
     }
     
     public String[] getAttributi (String nome){
-        String[]argo = new String[2];
+        String[]argo = new String[3];
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement stm = conn.createStatement();
@@ -288,6 +287,7 @@ public class Model {
             while(rs.next()){
                 argo[0]=rs.getString("ingredienti");
                 argo[1]=rs.getString("prezzo");
+                argo[2]=rs.getString("nome");
             }
             conn.close();  
         }catch (SQLException ex) {

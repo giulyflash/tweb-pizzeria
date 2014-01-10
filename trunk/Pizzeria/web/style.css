@@ -84,13 +84,13 @@ footer{
     text-align: center;
     font: 170% Georgia;
     color: blue;
-    margin: 15px;
+    margin-bottom: 15px;
 }
 
 .intestazione{
     width: 100%;
     text-align: center;
-    font: 150% Georgia;
+    font: 200% Georgia;
     color: blue;
 }
 
@@ -208,10 +208,10 @@ footer{
 }
 
 .divFooterDX{
-    width: 15%;
+    width: 25%;
     float: right;
     color: darkred;
-    margin-right:5%;
+    margin-right:1%;
     background-color: #FFF;
     opacity: 0.8;
     border-bottom: 2px solid white;
@@ -262,4 +262,11 @@ footer{
     font-size: 50%;
     color: green;
     text-align:center;
+}
+
+.tblScegli{
+    margin-bottom:4%;
+    margin-left:33%;
+    font-size: 120%;
+    color: green;
 }

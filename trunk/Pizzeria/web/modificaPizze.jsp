@@ -69,18 +69,23 @@
                 </div>
                 <form nome='update' id='update' action='Controller' method='post'>
                     <input type="hidden" id="action" name="action" value="update"/>
+                    <table class="tblScegli">
+                        <th>Scegli la pizza</th>
+                        <td>
+                            <select id="cmbPizza" name="cmbPizza" selected="Scegli la pizza" onchange="importa();">
+                                    <jsp:getProperty name="catalogoPizze" property="listaPizze"></jsp:getProperty>
+                            </select>
+                        </td>
+                    </table>
                     <table class="tblBordi">
                         <tr>
                             <th>Pizza</th>
                             <th>Ingredienti</th>
                             <th>Prezzo</th>
-                            <th>Conferma</th>
                         </tr>
                         <tr>
                             <td>
-                                <select id="cmbPizza" name="cmbPizza" selected="Scegli la pizza" onchange="importa();">
-                                    <jsp:getProperty name="catalogoPizze" property="listaPizze"></jsp:getProperty>
-                                </select>
+                                <input type="text" id="txtNomeU" name="txtNomeU">
                             </td>
                             <td>
                                 <input type="text" id="txtIngrU" name="txtIngrU">
@@ -88,10 +93,13 @@
                             <td>
                                 <input type="text" id="txtPrezzoU" name="txtPrezzoU">
                             </td>
-                            <td>
+                    </table>
+                    <table class="tblReg">
+                         <tr>
+                             <td>
                                 <input type="button" id="btnModifica" name="btnModifica" value='Modifica' onclick="modificaPizza();">
                             </td>
-                        </tr>
+                         </tr>
                     </table>
                 </form>
             </div>
@@ -105,14 +113,15 @@
                     <table class="tblBordi">
                         <tr>
                             <th>Pizza</th>
-                            <th>Conferma</th>
-                        </tr>
-                        <tr>
                             <td>
                                 <select id="cmbPizzaD" name="cmbPizzaD" selected="Scegli la pizza">
                                     <jsp:getProperty name="catalogoPizze" property="listaPizze"></jsp:getProperty>
                                 </select>
                             </td>
+                        </tr>
+                </table>
+                        <table class="tblReg">
+                        <tr>
                             <td>
                                 <input type="button" id="btnCancella" name="btnCancella" value='Cancella' onclick="cancellaPizza();">
                             </td>
