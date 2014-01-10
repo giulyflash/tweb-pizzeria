@@ -158,8 +158,8 @@ public class Controller extends HttpServlet {
                for (int i=0; i<rowCount; i++){
                    status=request.getParameter("chkStatus"+(i+1));
                    if (status!=null){
-                       nome=request.getParameter("txtPizza"+(i+1));
-                       quantita=request.getParameter("txtOrd"+(i+1));
+                       nome=request.getParameter("txtNome"+(i+1));
+                       quantita=request.getParameter("txtNum"+(i+1));
                        int ret = model.insertPrenotazione(utente, nome, quantita);
                        if (ret==0){
                            request.setAttribute("messaggio", "Prenotazione fallita, riprovare");
@@ -206,11 +206,12 @@ public class Controller extends HttpServlet {
            
            else if (action.equals("update")){
                String nome=request.getParameter("cmbPizza");
+               String newnome=request.getParameter("txtNomeU");
                String ingredienti=request.getParameter("txtIngrU");
                String prezzo= request.getParameter("txtPrezzoU");
                boolean error=false;
                RequestDispatcher dsp=null;
-               error=model.updatePizza(nome, ingredienti, prezzo);
+               error=model.updatePizza(nome, newnome, ingredienti, prezzo);
                if (!error){
                    request.setAttribute("messaggio", "Pizza modificata correttamente");
                    request.setAttribute("pizze",model.getCatalogoPizze());
@@ -249,6 +250,7 @@ public class Controller extends HttpServlet {
                String nome=request.getParameter("nome");
                ret=model.getAttributi(nome);
                if (ret!= null){
+                   xml+="<nome>"+ret[2]+"</nome>";
                    xml+="<ingredienti>"+ret[0]+"</ingredienti>";
                    xml+="<prezzo>"+ret[1]+"</prezzo>";
                }

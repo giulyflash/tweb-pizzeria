@@ -57,55 +57,73 @@ public class PizzeBean {
         return ret;
     }
 
-    public String getTabellaOrdini() {;
-        String table = "<table class=\"tblBordi\" id=\"table\">";
+    public String getTabellaOrdini() {
+        String table ="";
+        int index=0, j=0;
         double prezzo=0;
         String dataconsegna = "";
         String dataordine = "";
-        table+="\n\t<tr>\n<th>Pizza</th>\n<th>Quantità</th>\n<th>Prezzo</th>\n<th>Consegnato</th></tr>";
+        table+="<div><h3 class=\"sottotitolo\">Ordini consegnati</h3></div>";
         if(ordini!=null) {
-            for(ArrayList<String> pizza : ordini) {
-                if(pizza.get(2).equals("true"))
-                {
-                    prezzo=Double.parseDouble(pizza.get(1))*Double.parseDouble(pizza.get(3));
-                    dataconsegna = pizza.get(4).substring(0,10);
-                    table+="\n\t<tr>\n\t";
-                    table+="\t<td>" + pizza.get(0) +"</td>\n\t";
-                    table+="\t<td>" + pizza.get(1) +"</td>\n\t";
-                    table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
-                    table+="\t<td>" + dataconsegna +"</td>\n\t";
-                    table+="</tr>\n\t";
-                }
+            if (ordini.get(0).get(2).equals("false")){
+                table+="<div class=\"divMain\"><h4 class=\"error\">Non sono stati trovati ordini</h3></div>";
             }
-            table+="</table>";
-            table+="<form id=\"Ordini\" name=\"Ordini\" action=\"Controller\" method=\"POST\">";
+            else{
+                table+= "<table class=\"tblBordi\" id=\"table\">";
+                table+="\n\t<tr>\n<th>Pizza</th>\n<th>Quantità</th>\n<th>Prezzo</th>\n<th>Consegnato</th></tr>";
+                for(ArrayList<String> pizza : ordini) {
+                    if(pizza.get(2).equals("true"))
+                    {
+                        prezzo=Double.parseDouble(pizza.get(1))*Double.parseDouble(pizza.get(3));
+                        dataconsegna = pizza.get(4).substring(0,10);
+                        table+="\n\t<tr>\n\t";
+                        table+="\t<td>" + pizza.get(0) +"</td>\n\t";
+                        table+="\t<td>" + pizza.get(1) +"</td>\n\t";
+                        table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
+                        table+="\t<td>" + dataconsegna +"</td>\n\t";
+                        table+="</tr>\n\t";
+                    }
+                    j++;
+                }
+                table+="</table>";
+            }
+            index=ordini.size();
             table+="<hr>";
-            table+="<table class=\"tblBordi\" id=\"conferma\">";
-            table+="\n\t<tr>\n<th>Pizza</th>\n<th>Quantità</th>\n<th>Prezzo</th>\n<th>Consegnato</th><th>Data Ordine</th></tr>";
-            int i=1;
-            for(ArrayList<String> pizza : ordini) {
-                if(pizza.get(2).equals("false"))
-                {
-                    prezzo=Double.parseDouble(pizza.get(1))*Double.parseDouble(pizza.get(3));
-                    dataordine = pizza.get(4).substring(0,10);
-                    table+="\n\t<tr>\n\t";
-                    table+="\t<td><input type=\"textbox\" class=\"textbox\" name=\"txtPizza"+i+"\" id=\"txtPizza"+i+"\" value=\""+pizza.get(0)+"\"></td>\n\t";
-                    table+="\t<td>" + pizza.get(1) +"</td>\n\t";
-                    table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
-                    table+="\t<td><input type=\"checkbox\" name=\"chkOrdine"+i+"\" id=\"chkOrdine"+i+"\"></td>\n\t";
-                    table+="\t<td><input type=\"textbox\" class=\"textbox\" name=\"txtOrd"+i+"\" id=\"txtOrd"+i+"\" value=\""+dataordine+"\"></td>\n\t";
-                    table+="</tr>\n\t";
-                    i++;
-                }
-                
+            table+="<div><h3 class=\"sottotitolo\">Ordini non consegnati</h3></div>";
+            if (index==j){
+                table+="<div class=\"divMain\"><h4 class=\"error\">Non sono stati trovati ordini</h3></div>";
             }
-        }
-       table+="</table>";
+            else{
+                table+="<form id=\"Ordini\" name=\"Ordini\" action=\"Controller\" method=\"POST\">";
+                table+="<table class=\"tblBordi\" id=\"conferma\">";
+                table+="\n\t<tr>\n<th>Pizza</th>\n<th>Quantità</th>\n<th>Prezzo</th>\n<th>Consegnato</th><th>Data Ordine</th></tr>";
+                int i=1;
+                for(ArrayList<String> pizza : ordini) {
+                    if(pizza.get(2).equals("false"))
+                    {
+                        prezzo=Double.parseDouble(pizza.get(1))*Double.parseDouble(pizza.get(3));
+                        dataordine = pizza.get(4).substring(0,10);
+                        table+="\n\t<tr>\n\t";
+                        table+="\t<td><input type=\"textbox\" class=\"textbox\" name=\"txtPizza"+i+"\" id=\"txtPizza"+i+"\" value=\""+pizza.get(0)+"\"></td>\n\t";
+                        table+="\t<td>" + pizza.get(1) +"</td>\n\t";
+                        table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
+                        table+="\t<td><input type=\"checkbox\" name=\"chkOrdine"+i+"\" id=\"chkOrdine"+i+"\"></td>\n\t";
+                        table+="\t<td><input type=\"textbox\" class=\"textbox\" name=\"txtOrd"+i+"\" id=\"txtOrd"+i+"\" value=\""+dataordine+"\"></td>\n\t";
+                        table+="</tr>\n\t";
+                        i++;
+                    }               
+                }
+                table+="</table>";
+                table+="<div class=\"divMain\">";
+                table+="\t<td><input type=\"button\" id=\"btnConfOrdini\" name=\"btnConfOrdini\" value=\"Conferma lista ordini\" onclick=\"confermaOrdini()\"/></td>";
+            }
+        }      
        return table;
     }
     
-    public String getTabellaOrdiniCompleta() {;
-        String table = "<table class=\"tblBordi\">";
+    public String getTabellaOrdiniCompleta() {
+        String table ="<div><h3 class=\"sottotitolo\">Ordini consegnati</h3></div>";
+        table+= "<table class=\"tblBordi\">";
         double prezzo=0;
         String dataconsegna = "";
         table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Data Consegna</th></tr>";
@@ -127,6 +145,7 @@ public class PizzeBean {
             table+="</table>";
             table+="<form id=\"Ordini\" name=\"Ordini\" action=\"Controller\" method=\"POST\">";
             table+="<hr>";
+            table+="<div><h3 class=\"sottotitolo\">Ordini non consegnati</h3></div>";
             table+="<table class=\"tblBordi\" id=\"conferma\">";
             table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t</tr>";
             int i=1;

@@ -171,11 +171,21 @@ function importa(){
     $.post("Controller", {nome:document.getElementById("cmbPizza").value, action:"import"},
             function(xmlResponse)
             {
-               alert("ciao!");
                var xml = $.parseXML(xmlResponse);
                var prezzo = $(xml).find("prezzo").text()
                var ingr = $(xml).find("ingredienti").text()
+               var nome = $(xml).find("nome").text();
                document.getElementById("txtIngrU").value=ingr;
                document.getElementById("txtPrezzoU").value=prezzo;
+               document.getElementById("txtNomeU").value=nome;
             })
+}
+
+function controllNeg(){
+    var num = parseInt(document.getElementById("txtQuantita").value);
+    
+    if (num<0){
+        alert("Inserire un valore positivo per il numero di pizze!");
+        document.getElementById("txtQuantita").value="0";
+    }
 }
