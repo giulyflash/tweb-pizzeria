@@ -90,11 +90,11 @@ public class Model {
         return lista;
     }
     
-    public int insertPrenotazione (String user, String nome, String quantita){
+    public int insertPrenotazione (String user, String nome, String quantita, Timestamp time){
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement st = conn.createStatement();
-            st.execute("INSERT INTO Prenotazioni VALUES ('"+user+"','"+nome+"',"+quantita+",false,null,current timestamp)");
+            st.execute("INSERT INTO Prenotazioni VALUES ('"+user+"','"+nome+"',"+quantita+",'I',null,current timestamp,'"+time+"')");
             conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -108,7 +108,7 @@ public class Model {
         
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
-            String query="SELECT * FROM Prenotazioni WHERE Prenotazioni.utente='"+user+"' ORDER BY dataconsegna";
+            String query="SELECT * FROM Prenotazioni WHERE Prenotazioni.utente='"+user+"' AND status <> 'C' ORDER BY dataconsegna";
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while(rs.next()) {
@@ -117,7 +117,7 @@ public class Model {
                 pizza.add(rs.getString("quantita"));
                 pizza.add(rs.getString("status"));
                 pizza.add(getPrezzo(rs.getString("pizza")));
-                if((rs.getString("status")).compareTo("false")==0){
+                if((rs.getString("status")).compareTo("I")==0){
                     pizza.add(rs.getString("dataordine"));
                 }
                 pizza.add(rs.getString("dataconsegna"));
@@ -147,6 +147,7 @@ public class Model {
                 pizza.add(rs.getString("status"));
                 pizza.add(getPrezzo(rs.getString("pizza")));
                 pizza.add(rs.getString("dataconsegna"));
+                pizza.add(rs.getString("datarichiesta"));
                 ordini.add(pizza);
             }    
             conn.close();
@@ -244,11 +245,11 @@ public class Model {
             Statement stm = conn.createStatement();
             ResultSet rs=stm.executeQuery ("SELECT dataordine FROM prenotazioni");
             while (rs.next()){
-                DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+                DateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 Timestamp ts = rs.getTimestamp("dataordine");
                 String datedb = date.format(ts);
                 if (datedb.compareTo(data)==0){
-                    stm.execute("UPDATE Prenotazioni SET Status=true,DataConsegna=current timestamp WHERE Utente='"+utente+"' AND Pizza='"+pizza+"'");
+                    stm.execute("UPDATE Prenotazioni SET Status='A',DataConsegna=current timestamp WHERE Utente='"+utente+"' AND Pizza='"+pizza+"'");
                 }          
             }
             conn.close();  
@@ -295,5 +296,26 @@ public class Model {
             argo = null;
         }
         return argo;
+    }
+    
+    public boolean deleteOrder(String utente, String pizza, String data){    
+        try{
+            Connection conn = DriverManager.getConnection(url, this.user, pwd);
+            Statement stm = conn.createStatement();
+            ResultSet rs=stm.executeQuery ("SELECT dataordine FROM prenotazioni");
+            while (rs.next()){
+                DateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
+                Timestamp ts = rs.getTimestamp("dataordine");
+                String datedb = date.format(ts);
+                if (datedb.compareTo(data)==0){
+                    stm.execute("UPDATE Prenotazioni SET status='C', dataconsegna=current timestamp WHERE Utente='"+utente+"' AND Pizza='"+pizza+"'");
+                }          
+            }
+            conn.close();  
+        }catch (SQLException ex) {
+            ex.printStackTrace();            
+            return false;
+        }
+        return true;
     }
 }

@@ -154,7 +154,7 @@ function confermaOrdini(){
     var errore=true;
     
     while (i<rowCount-1){
-        if ((document.getElementById("chkOrdine"+(i+1))).checked) {
+        if ((document.getElementById("cmbOp"+(i+1)).value==="Consegna") || (document.getElementById("cmbOp"+(i+1)).value==="Cancella")) {
             errore=false;
         }
         i++;
