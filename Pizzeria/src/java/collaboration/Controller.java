@@ -89,7 +89,7 @@ public class Controller extends HttpServlet {
            }
            
            else if(action.equals("registrati")){
-               request.setAttribute("error", " ");
+               request.setAttribute("messaggio", " ");
                RequestDispatcher dsp= getServletContext().getRequestDispatcher("/registrazione.jsp");
                dsp.forward(request, response);
            }
@@ -104,13 +104,16 @@ public class Controller extends HttpServlet {
                
                ret=model.insertUser(username, pwd);
                if (ret==0){
-                   request.setAttribute("messaggio", "Registrazione fallita, riprovare");
+                   request.setAttribute("messaggio", "Utente già esistente");
                    dsp.forward(request, response);
                }
                else {
-                   request.setAttribute("messaggio", "Registrazione avvenuta correttamente");
-                   request.setAttribute("pizze",model.getCatalogoPizze());
-                   dsp2.forward(request, response);
+                   HttpSession session = request.getSession();
+                   session.setAttribute("username", username);
+                   session.setAttribute("ruolo", "Cliente");
+                   request.setAttribute("messaggio", "Sei loggato con il ruolo di Cliente");
+                   request.setAttribute("pizze", model.getCatalogoPizze());
+                   dsp2.forward(request,response);
                }
            }
            
@@ -137,10 +140,19 @@ public class Controller extends HttpServlet {
            }
            
            //storico ordinazioni
-           else if (action.equals("storia")){
-               request.setAttribute("ordini",model.getOrdiniTutti());
-               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/storico.jsp");
-               dsp.forward(request, response);
+           else if (action.equals("storia")){              
+               HttpSession session = request.getSession();
+               if (session.getAttribute("ruolo").equals("Amministratore")){
+                   request.setAttribute("ordini",model.getOrdiniTutti());
+                   RequestDispatcher dsp= getServletContext().getRequestDispatcher("/storico.jsp");
+                   dsp.forward(request, response);
+               }
+               else {
+                   request.setAttribute("pizze",model.getCatalogoPizze());
+                   request.setAttribute("messaggio", "Non hai i diritti per accedere a quest'area");
+                   RequestDispatcher dsp= getServletContext().getRequestDispatcher("/index.jsp");
+                   dsp.forward(request, response);
+               }
            }
            
            //gestione prenotazioni
@@ -153,39 +165,40 @@ public class Controller extends HttpServlet {
            
            else if (action.equals("validate")){
                try{
-                   HttpSession session = request.getSession();
-               String utente= (String)session.getAttribute("username");
-               int rowCount = Integer.parseInt(request.getParameter("rowCount"));
-               String date=(String) request.getParameter("date");
-               RequestDispatcher dsp=null;
-               String nome = null;
-               String quantita = null;
-               String status;
-               boolean error=false;
-               DateFormat format;
-               format=new SimpleDateFormat("yyyy-MM-dd HH:mm");
-               date = date.replace ("T", " ");
-               Timestamp time=new Timestamp(format.parse(date).getTime());
-               for (int i=0; i<rowCount; i++){
-                   status=request.getParameter("chkStatus"+(i+1));
-                   if (status!=null){
-                       nome=request.getParameter("txtNome"+(i+1));
-                       quantita=request.getParameter("txtNum"+(i+1));
-                       int ret = model.insertPrenotazione(utente, nome, quantita, time);
-                       if (ret==0){
-                           request.setAttribute("messaggio", "Prenotazione fallita, riprovare");
-                           dsp= getServletContext().getRequestDispatcher("/newOrdina.jsp");
-                           error=true;
-                       }
-                   }
-               }
-               if (!error){
-                   request.setAttribute("messaggio", "Prenotazione salvata correttamente");
-                   dsp= getServletContext().getRequestDispatcher("/index.jsp");
-                }
-                    request.setAttribute("pizze",model.getCatalogoPizze());
-                    dsp.forward(request, response);
-                
+                    HttpSession session = request.getSession();
+                    
+                    String utente= (String)session.getAttribute("username");
+                    int rowCount = Integer.parseInt(request.getParameter("rowCount"));
+                    String date=(String) request.getParameter("date");
+                    RequestDispatcher dsp=null;
+                    String nome = null;
+                    String quantita = null;
+                    String status;
+                    boolean error=false;
+                    DateFormat format;
+                    format=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    date = date.replace ("T", " ");
+                    Timestamp time=new Timestamp(format.parse(date).getTime());
+                    for (int i=0; i<rowCount; i++){
+                        status=request.getParameter("chkStatus"+(i+1));
+                        if (status!=null){
+                            nome=request.getParameter("txtNome"+(i+1));
+                            quantita=request.getParameter("txtNum"+(i+1));
+                            double prezzo=Double.parseDouble(model.getPrezzo(nome))*Double.parseDouble(quantita);
+                            int ret = model.insertPrenotazione(utente, nome, quantita, time, prezzo);
+                            if (ret==0){
+                                request.setAttribute("messaggio", "Prenotazione fallita, riprovare");
+                                dsp= getServletContext().getRequestDispatcher("/newOrdina.jsp");
+                                error=true;
+                            }
+                        }
+                    }
+                    if (!error){
+                        request.setAttribute("messaggio", "Prenotazione salvata correttamente");
+                        request.setAttribute("ordini",model.getOrdini(utente));
+                        dsp= getServletContext().getRequestDispatcher("/visualizzaOrdini.jsp");
+                        dsp.forward(request, response);
+                     }
                }catch(Exception e){
                         request.setAttribute("messaggio", "Prenotazione fallita, riprovare");
                         RequestDispatcher dsp= getServletContext().getRequestDispatcher("/newOrdina.jsp");
@@ -193,10 +206,19 @@ public class Controller extends HttpServlet {
            }
            // gestione catalogo pizze
            else if (action.equals("modifica")){
-               request.setAttribute("lista",model.getLista());
-               request.setAttribute("messaggio", "");
-               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
-               dsp.forward(request, response);
+               HttpSession session = request.getSession();
+               if (session.getAttribute("ruolo").equals("Amministratore")){
+                   request.setAttribute("lista",model.getLista());
+                   request.setAttribute("messaggio", "");
+                   RequestDispatcher dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
+                   dsp.forward(request, response);
+               }
+               else {
+                   request.setAttribute("pizze",model.getCatalogoPizze());
+                   request.setAttribute("messaggio", "Non hai i diritti per accedere a quest'area");
+                   RequestDispatcher dsp= getServletContext().getRequestDispatcher("/index.jsp");
+                   dsp.forward(request, response);
+               }
            }
            
            else if (action.equals("insert")){
@@ -313,8 +335,8 @@ public class Controller extends HttpServlet {
                }
                if (!error){
                    request.setAttribute("messaggio", "Conferma eseguita correttamente");
-                   dsp= getServletContext().getRequestDispatcher("/index.jsp");
-                   request.setAttribute("pizze",model.getCatalogoPizze());
+                   dsp= getServletContext().getRequestDispatcher("/visualizzaOrdini.jsp");
+                   request.setAttribute("ordini",model.getOrdini(utente));
                    dsp.forward(request, response);
                }
                else{

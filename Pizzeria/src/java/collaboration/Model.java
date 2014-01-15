@@ -90,11 +90,11 @@ public class Model {
         return lista;
     }
     
-    public int insertPrenotazione (String user, String nome, String quantita, Timestamp time){
+    public int insertPrenotazione (String user, String nome, String quantita, Timestamp time, double prezzo){
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement st = conn.createStatement();
-            st.execute("INSERT INTO Prenotazioni VALUES ('"+user+"','"+nome+"',"+quantita+",'I',null,current timestamp,'"+time+"')");
+            st.execute("INSERT INTO Prenotazioni VALUES ('"+user+"','"+nome+"',"+quantita+",'I',null,current timestamp,'"+time+"',"+prezzo+")");
             conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -119,6 +119,8 @@ public class Model {
                 pizza.add(getPrezzo(rs.getString("pizza")));
                 pizza.add(rs.getString("dataordine"));
                 pizza.add(rs.getString("dataconsegna"));
+                pizza.add(rs.getString("prezzo"));
+                pizza.add(rs.getString("datarichiesta"));
                 ordini.add(pizza);
             }    
             conn.close();
@@ -146,6 +148,8 @@ public class Model {
                 pizza.add(getPrezzo(rs.getString("pizza")));
                 pizza.add(rs.getString("dataconsegna"));
                 pizza.add(rs.getString("datarichiesta"));
+                pizza.add(rs.getString("prezzo"));
+                pizza.add(rs.getString("dataordine"));
                 ordini.add(pizza);
             }    
             conn.close();
@@ -300,20 +304,21 @@ public class Model {
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement stm = conn.createStatement();
+            Statement stm2=conn.createStatement();
             ResultSet rs=stm.executeQuery ("SELECT dataordine FROM prenotazioni WHERE status='I'");
             while (rs.next()){
                 DateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 Timestamp ts = rs.getTimestamp("dataordine");
                 String datedb = date.format(ts);
                 if (datedb.compareTo(data)==0){
-                    stm.execute("UPDATE Prenotazioni SET status='C', dataconsegna=current timestamp WHERE Utente='"+utente+"' AND Pizza='"+pizza+"' AND dataordine='"+ts+"'");
+                    stm2.execute("UPDATE Prenotazioni SET status='C', dataconsegna=current timestamp WHERE Utente='"+utente+"' AND Pizza='"+pizza+"' AND dataordine='"+ts+"'");
                 }          
             }
             conn.close();  
         }catch (SQLException ex) {
             ex.printStackTrace();            
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 }

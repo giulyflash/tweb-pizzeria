@@ -259,9 +259,10 @@ footer{
 .textbox{
     border:0px;
     background-color: transparent;
-    font-size: 50%;
+    font-size: 75%;
     color: green;
     text-align:center;
+    font-family: Helvetica;
 }
 
 .tblScegli{
