@@ -40,7 +40,7 @@ public class PizzeBean {
                 table+="\n\t<tr>\n\t";
                 table+="\t<td>" + pizza.get(0) +"</td>\n\t";
                 table+="\t<td>" + pizza.get(1) +"</td>\n\t";
-                table+="\t<td>" + pizza.get(2) +" &#8364</td>\n\t";
+                table+="\t<td>" + pizza.get(2) +"0 &#8364</td>\n\t";
                 table+="</tr>\n\t";
             }
         }
@@ -139,15 +139,16 @@ public class PizzeBean {
     }
     
     public String getTabellaOrdiniCompleta() {
-        String table ="<div><h3 class=\"sottotitolo\">Ordini consegnati</h3></div>";
-        table+= "<table class=\"tblBordi\">";
+        String table ="<div id=\"arrivate\" hidden=\"true\"><h3 class=\"sottotitolo\">Ordini consegnati</h3>";       
         double prezzo=0;
         String dataop = "";
-        table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Data Consegna</th></tr>";
+        int i=0;        
         if(ordini.size()!=0){
+            if(ordini.get(0).get(3).equals("A")){
+                table+= "<table class=\"tblBordi\">";
+                table+="\\n\\t<tr>\\n\\t\\t<th>Utente</th>\\n\\t\\t<th>Pizza</th>\\n\\t\\t<th>Quantità</th>\\n\\t\\t<th>Prezzo</th>\\n\\t\\t<th>Data Consegna</th></tr>";
             for(ArrayList<String> pizza : ordini) {
-                if(pizza.get(3).equals("A"))
-                {
+                if (pizza.get(3).equals("A")){
                     prezzo=Double.parseDouble(pizza.get(2))*Double.parseDouble(pizza.get(4));
                     dataop = pizza.get(5).substring(0,10);
                     table+="\n\t<tr>\n\t";
@@ -157,17 +158,47 @@ public class PizzeBean {
                     table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
                     table+="\t<td>" + dataop +"</td>\n\t";
                     table+="</tr>\n\t";
+                    i++;
+                }
+                }            
+            table+="</table>";
+            }
+            else{
+                table+="<div class=\"divMain\"><h4 class=\"error\">Non sono stati trovati ordini</h3></div>";
+            }
+            table+="<hr>";
+            table+="</div>";
+            table+="<div id=\"cancellate\" hidden=\"true\"><h3 class=\"sottotitolo\">Ordini annullati</h3>";           
+            if(ordini.get(i).get(3).equals("C")){
+                table+="<table class=\"tblBordi\" id=\"conferma\">";
+            table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Data cancellazione</th>\n\t\t</tr>";
+            for(ArrayList<String> pizza : ordini) {
+                if (pizza.get(3).equals("C")){
+                    prezzo=Double.parseDouble(pizza.get(2))*Double.parseDouble(pizza.get(4));
+                    dataop = pizza.get(5).substring(0,10);
+                    table+="\n\t<tr>\n\t";
+                    table+="\t<td>" + pizza.get(0) +"</td>\n\t";
+                    table+="\t<td>" + pizza.get(1) +"</td>\n\t";
+                    table+="\t<td>" + pizza.get(2) +"</td>\n\t";
+                    table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
+                    table+="\t<td>" + dataop +"</td>\n\t";
+                    table+="</tr>\n\t";
+                    i++;
                 }
             }
             table+="</table>";
+            }
+            else{
+                table+="<div class=\"divMain\"><h4 class=\"error\">Non sono stati trovati ordini</h3></div>";
+            }
             table+="<hr>";
-            table+="<div><h3 class=\"sottotitolo\">Ordini non consegnati</h3></div>";
-            table+="<table class=\"tblBordi\" id=\"conferma\">";
+            table+="</div>";
+            table+="<div id=\"inordine\" hidden=\"true\"><h3 class=\"sottotitolo\">Ordini non consegnati</h3>";
+            if(ordini.get(i).get(3).equals("I")){
+                table+="<table class=\"tblBordi\" id=\"conferma\">";
             table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Data richiesta</th>\n\t\t</tr>";
-            int i=1;
-            for(ArrayList<String> pizza : ordini) {
-                if(pizza.get(3).equals("I"))
-                {
+            for(ArrayList<String> pizza : ordini) {  
+                if (pizza.get(3).equals("I")){
                     prezzo=Double.parseDouble(pizza.get(2))*Double.parseDouble(pizza.get(4));
                     dataop = pizza.get(6).substring(0,10);
                     table+="\n\t<tr>\n\t";
@@ -178,31 +209,14 @@ public class PizzeBean {
                     table+="\t<td>" + dataop +"</td>\n\t";
                     table+="</tr>\n\t";
                 }
-                i++;
-            }
-        }
-       table+="</table>";
-       table+="<hr>";
-            table+="<div><h3 class=\"sottotitolo\">Ordini annullati</h3></div>";
-            table+="<table class=\"tblBordi\" id=\"conferma\">";
-            table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Data cancellazione</th>\n\t\t</tr>";
-            int i=1;
-            for(ArrayList<String> pizza : ordini) {
-                if(pizza.get(3).equals("C"))
-                {
-                    prezzo=Double.parseDouble(pizza.get(2))*Double.parseDouble(pizza.get(4));
-                    dataop = pizza.get(5).substring(0,10);
-                    table+="\n\t<tr>\n\t";
-                    table+="\t<td>" + pizza.get(0) +"</td>\n\t";
-                    table+="\t<td>" + pizza.get(1) +"</td>\n\t";
-                    table+="\t<td>" + pizza.get(2) +"</td>\n\t";
-                    table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
-                    table+="\t<td>" + dataop +"</td>\n\t";
-                    table+="</tr>\n\t";
                 }
-                i++;
+            table+="</table>";
             }
-       table+="</table>";
+            else{
+                table+="<div class=\"divMain\"><h4 class=\"error\">Non sono stati trovati ordini</h3></div>";
+            }
+            table+="</div>";
+        }     
        return table;
     }
     
