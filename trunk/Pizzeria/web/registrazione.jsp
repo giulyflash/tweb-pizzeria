@@ -26,8 +26,8 @@
                 </h3>
                 <form id="frmReg" action="Controller" method="POST">
                     <input type="hidden" name="action" id="action" value="confreg">
-                    <div class="divMain" id="divMain" >
-                        <%=request.getAttribute("error")%>
+                    <div class="divMain" id="divMain">
+                        <h3 class="error"><%=request.getAttribute("messaggio")%></h3>
                         <%
                             if(session.getAttribute("user")!=null) {%>
                             Sei già registrato
@@ -42,7 +42,11 @@
                                 <td class="tdInput"><input class="inputText" type="password" id="txtPassword" name="txtPassword" /></td>
                             </tr>
                         </table>
-                        <input type="button" id="btnOk" value="Conferma" onclick="validaReg();"/>
+                        <table class="tblReg">
+                            <tr>
+                                <td><input type="button" id="btnOk" value="Conferma" onclick="validaReg();"/></td>
+                            </tr>                        
+                        </table>
                 </form>
             </article>
         </div>

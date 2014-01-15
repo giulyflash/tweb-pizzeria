@@ -58,6 +58,7 @@ function aggiungiPrenotazione(){
             element2.type = "number";
             element2.name = "txtNum"+rowCount;
             element2.value= num;
+            element2.setAttribute("onchange", "controllNeg(this);");
             element3.type = "checkbox";
             element3.name = "chkStatus"+rowCount;
             element3.checked="checked";
@@ -181,12 +182,12 @@ function importa(){
             })
 }
 
-function controllNeg(){
-    var num = parseInt(document.getElementById("txtQuantita").value);
+function controllNeg(textbox){
+    var num=parseInt(textbox.value);
     
     if (num<0){
         alert("Inserire un valore positivo per il numero di pizze!");
-        document.getElementById("txtQuantita").value="0";
+        textbox.value="0";
     }
 }
 

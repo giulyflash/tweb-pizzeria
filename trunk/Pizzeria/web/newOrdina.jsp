@@ -29,7 +29,7 @@
                     <td> <select id="cmbPizza" name="cmbPizza" selected="Scegli la pizza">
                                 <jsp:getProperty name="catalogoPizze" property="listaPizze"></jsp:getProperty>
                     </select></td>
-                    <td> <input type="number" id="txtQuantita" name="txtQuantita" value="0" onchange="controllNeg();"></td>
+                    <td> <input type="number" id="txtQuantita" name="txtQuantita" value="0" onchange="controllNeg(this);"></td>
                 </tr>
                 <table class="tblReg">
                     <tr>
