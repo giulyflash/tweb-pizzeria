@@ -117,9 +117,7 @@ public class Model {
                 pizza.add(rs.getString("quantita"));
                 pizza.add(rs.getString("status"));
                 pizza.add(getPrezzo(rs.getString("pizza")));
-                if((rs.getString("status")).compareTo("I")==0){
-                    pizza.add(rs.getString("dataordine"));
-                }
+                pizza.add(rs.getString("dataordine"));
                 pizza.add(rs.getString("dataconsegna"));
                 ordini.add(pizza);
             }    
@@ -136,7 +134,7 @@ public class Model {
         
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
-            String query="SELECT * FROM Prenotazioni ORDER BY utente, dataconsegna";
+            String query="SELECT * FROM Prenotazioni ORDER BY status";
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(query);
             while(rs.next()) {
@@ -302,13 +300,13 @@ public class Model {
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement stm = conn.createStatement();
-            ResultSet rs=stm.executeQuery ("SELECT dataordine FROM prenotazioni");
+            ResultSet rs=stm.executeQuery ("SELECT dataordine FROM prenotazioni WHERE status='I'");
             while (rs.next()){
-                DateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
+                DateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 Timestamp ts = rs.getTimestamp("dataordine");
                 String datedb = date.format(ts);
                 if (datedb.compareTo(data)==0){
-                    stm.execute("UPDATE Prenotazioni SET status='C', dataconsegna=current timestamp WHERE Utente='"+utente+"' AND Pizza='"+pizza+"'");
+                    stm.execute("UPDATE Prenotazioni SET status='C', dataconsegna=current timestamp WHERE Utente='"+utente+"' AND Pizza='"+pizza+"' AND dataordine='"+ts+"'");
                 }          
             }
             conn.close();  

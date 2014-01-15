@@ -80,8 +80,8 @@ function confPrenotazione(){
     var rowCount = table.rows.length-1;
     var error=false;
     
-    if (rowCount<1){
-        alert ("Inserisci almeno una prenotazione");
+    if (rowCount<1 || document.getElementById("date").value===""){
+        alert ("Controlla tutti i campi (prenotazione/data)");
         error=true;
     }
     
@@ -188,4 +188,19 @@ function controllNeg(){
         alert("Inserire un valore positivo per il numero di pizze!");
         document.getElementById("txtQuantita").value="0";
     }
+}
+
+function rendiVisibile(){
+    var arrivate=document.getElementById("chkArrivate");
+    var cancellate=document.getElementById("chkCancellate");
+    var inordine=document.getElementById("chkInordine");
+    
+    if(arrivate.checked) document.getElementById("arrivate").hidden=false;
+    else document.getElementById("arrivate").hidden=true;
+    
+    if(cancellate.checked) document.getElementById("cancellate").hidden=false;
+    else document.getElementById("cancellate").hidden=true;
+    
+    if(inordine.checked) document.getElementById("inordine").hidden=false;
+    else document.getElementById("inordine").hidden=true;
 }

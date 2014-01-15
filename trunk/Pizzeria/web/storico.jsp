@@ -20,7 +20,13 @@
         <jsp:include page="/menu.jsp"></jsp:include>
             <div class="divMain" id="divMain">
                 <h2 class="intestazione"> Tutte le ordinazioni:</h2>
-                
+                <table class="tlbSelect">
+                <tr>
+                    <td>Consegnate <input type="checkbox" id="chkArrivate" onclick="rendiVisibile();"></td>
+                    <td>Annullate <input type="checkbox" id="chkCancellate" onclick="rendiVisibile();"></td>
+                    <td>In ordine <input type="checkbox" id="chkInordine" onclick="rendiVisibile();"></td>
+                </tr>  
+                </table>
             <hr>
                 <jsp:getProperty name="catalogoPizze" property="tabellaOrdiniCompleta"></jsp:getProperty>
         </article>
