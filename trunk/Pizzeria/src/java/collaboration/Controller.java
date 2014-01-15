@@ -6,6 +6,7 @@ package collaboration;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -22,6 +23,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import myBeans.PizzeBean;
 import myBeans.UtentiBean;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class Controller extends HttpServlet {
 
     /**
@@ -147,20 +152,26 @@ public class Controller extends HttpServlet {
            }
            
            else if (action.equals("validate")){
-               HttpSession session = request.getSession();
+               try{
+                   HttpSession session = request.getSession();
                String utente= (String)session.getAttribute("username");
                int rowCount = Integer.parseInt(request.getParameter("rowCount"));
+               String date=(String) request.getParameter("date");
                RequestDispatcher dsp=null;
                String nome = null;
                String quantita = null;
                String status;
                boolean error=false;
+               DateFormat format;
+               format=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+               date = date.replace ("T", " ");
+               Timestamp time=new Timestamp(format.parse(date).getTime());
                for (int i=0; i<rowCount; i++){
                    status=request.getParameter("chkStatus"+(i+1));
                    if (status!=null){
                        nome=request.getParameter("txtNome"+(i+1));
                        quantita=request.getParameter("txtNum"+(i+1));
-                       int ret = model.insertPrenotazione(utente, nome, quantita);
+                       int ret = model.insertPrenotazione(utente, nome, quantita, time);
                        if (ret==0){
                            request.setAttribute("messaggio", "Prenotazione fallita, riprovare");
                            dsp= getServletContext().getRequestDispatcher("/newOrdina.jsp");
@@ -171,11 +182,15 @@ public class Controller extends HttpServlet {
                if (!error){
                    request.setAttribute("messaggio", "Prenotazione salvata correttamente");
                    dsp= getServletContext().getRequestDispatcher("/index.jsp");
-               }
-               request.setAttribute("pizze",model.getCatalogoPizze());
-               dsp.forward(request, response);
+                }
+                    request.setAttribute("pizze",model.getCatalogoPizze());
+                    dsp.forward(request, response);
+                
+               }catch(Exception e){
+                        request.setAttribute("messaggio", "Prenotazione fallita, riprovare");
+                        RequestDispatcher dsp= getServletContext().getRequestDispatcher("/newOrdina.jsp");
+                       }            
            }
-           
            // gestione catalogo pizze
            else if (action.equals("modifica")){
                request.setAttribute("lista",model.getLista());
@@ -283,12 +298,17 @@ public class Controller extends HttpServlet {
                int rowCount = Integer.parseInt(request.getParameter("rowCount"));
                RequestDispatcher dsp=null;
                boolean error=false;
-               for (int i=0; i<rowCount; i++){
-                   String status=request.getParameter("chkOrdine"+(i+1));
-                   if (status!=null){
+               for (int i=0; i<rowCount-1; i++){
+                   String status=(String)request.getParameter("cmbOp"+(i+1));
+                   if (status.equals("Consegna")){
                        String pizza= request.getParameter("txtPizza"+(i+1));
                        String dataord= request.getParameter("txtOrd"+(i+1));
                        error=model.updateOrder(utente,pizza,dataord);
+                   }
+                   else if (status.equals("Cancella")){
+                       String pizza= request.getParameter("txtPizza"+(i+1));
+                       String dataord= request.getParameter("txtOrd"+(i+1));
+                       error=model.deleteOrder(utente,pizza,dataord);
                    }
                }
                if (!error){

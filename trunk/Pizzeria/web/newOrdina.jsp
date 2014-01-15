@@ -50,6 +50,14 @@
                                 <th>Conferma</th>
                             </tr>
                         </table>
+                <div class="divMain">
+                    <h2 class="sottotitolo"> Data e ora di consegna </h2>
+                    <table class="tblScegli">
+                        <tr>
+                            <td><input type='datetime-local' id='date' name='date'/></td>
+                        </tr>
+                    </table>
+                </div>
                 <table class="tblReg">
                     <input type="hidden" id="action" name="action" value="validate"/>
                     <input type="hidden" id="rowCount" name="rowCount" value="0"/>
