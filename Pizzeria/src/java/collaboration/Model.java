@@ -90,12 +90,12 @@ public class Model {
         return lista;
     }
     
-    public int insertPrenotazione (String user, String nome, String quantita, Timestamp time, double prezzo){
+    public int insertPrenotazione (String user, String nome, String quantita, Timestamp time){
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement st = conn.createStatement();
             String inizio = getDataValidita (nome);
-            st.execute("INSERT INTO Prenotazioni VALUES ('"+user+"','"+nome+"',"+quantita+",'I',null,current timestamp,'"+time+"',"+prezzo+", '"+inizio+"')");
+            st.execute("INSERT INTO Prenotazioni VALUES ('"+user+"','"+nome+"',"+quantita+",'I',null,current timestamp,'"+time+"','"+inizio+"')");
             conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -117,10 +117,9 @@ public class Model {
                 pizza.add(rs.getString("pizza"));
                 pizza.add(rs.getString("quantita"));
                 pizza.add(rs.getString("status"));
-                pizza.add(getPrezzo(rs.getString("pizza")));
+                pizza.add(getPrezzo(rs.getString("pizza"), rs.getString("datavalidita")));
                 pizza.add(rs.getString("dataordine"));
                 pizza.add(rs.getString("dataconsegna"));
-                pizza.add(rs.getString("prezzo"));
                 pizza.add(rs.getString("datarichiesta"));
                 ordini.add(pizza);
             }    
@@ -146,10 +145,9 @@ public class Model {
                 pizza.add(rs.getString("pizza"));
                 pizza.add(rs.getString("quantita"));
                 pizza.add(rs.getString("status"));
-                pizza.add(getPrezzo(rs.getString("pizza")));
+                pizza.add(getPrezzo(rs.getString("pizza"), rs.getString("datavalidita")));
                 pizza.add(rs.getString("dataconsegna"));
                 pizza.add(rs.getString("datarichiesta"));
-                pizza.add(rs.getString("prezzo"));
                 pizza.add(rs.getString("dataordine"));
                 ordini.add(pizza);
             }    
@@ -225,12 +223,12 @@ public class Model {
         return ret;
     }
     
-    public String getPrezzo (String pizza){
+    public String getPrezzo (String pizza, String datavalidita){
         String prezzo=null;
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT prezzo FROM Pizze WHERE nome='"+pizza+"' and datafine is null");
+            ResultSet rs = stm.executeQuery("SELECT prezzo FROM Pizze WHERE nome='"+pizza+"' and datainizio='"+datavalidita+"'");
             while(rs.next()){
                 prezzo=rs.getString("prezzo");
             }

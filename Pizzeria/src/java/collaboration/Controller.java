@@ -183,8 +183,8 @@ public class Controller extends HttpServlet {
                         if (status!=null){
                             nome=request.getParameter("txtNome"+(i+1));
                             quantita=request.getParameter("txtNum"+(i+1));
-                            double prezzo=Double.parseDouble(model.getPrezzo(nome))*Double.parseDouble(quantita);
-                            int ret = model.insertPrenotazione(utente, nome, quantita, time, prezzo);
+                            double prezzo=Double.parseDouble(model.getPrezzo(nome,model.getDataValidita(nome)))*Double.parseDouble(quantita);
+                            int ret = model.insertPrenotazione(utente, nome, quantita, time);
                             if (ret==0){
                                 request.setAttribute("messaggio", "Prenotazione fallita, riprovare");
                                 request.setAttribute("lista",model.getLista());
