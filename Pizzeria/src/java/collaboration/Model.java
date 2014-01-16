@@ -94,7 +94,8 @@ public class Model {
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement st = conn.createStatement();
-            st.execute("INSERT INTO Prenotazioni VALUES ('"+user+"','"+nome+"',"+quantita+",'I',null,current timestamp,'"+time+"',"+prezzo+")");
+            String inizio = getDataValidita (nome);
+            st.execute("INSERT INTO Prenotazioni VALUES ('"+user+"','"+nome+"',"+quantita+",'I',null,current timestamp,'"+time+"',"+prezzo+", '"+inizio+"')");
             conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -167,8 +168,8 @@ public class Model {
             String query="SELECT * FROM Pizze WHERE Nome='"+nome+"'";
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(query);
-            if(rs.next()) stm.execute("UPDATE Pizze SET datafine=null WHERE nome='"+nome+"'");
-            else stm.execute("INSERT INTO Pizze VALUES ('"+nome+"','"+ingredienti+"',"+prezzo+",current timestamp,null)");
+            if(rs.next()) stm.execute("UPDATE Pizze SET datafine=current timestamp WHERE nome='"+nome+"'");
+            stm.execute("INSERT INTO Pizze VALUES ('"+nome+"','"+ingredienti+"',"+prezzo+",current timestamp,null)");
             conn.close();
         }catch (SQLException ex) {
             ex.printStackTrace();            
@@ -182,7 +183,8 @@ public class Model {
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement stm = conn.createStatement();
-            stm.execute("UPDATE Pizze SET nome='"+newnome+"', ingredienti='"+ingredienti+"',prezzo="+prezzo+" WHERE nome='"+nome+"'");
+            stm.execute("UPDATE Pizze SET datafine=current timestamp WHERE nome='"+nome+"'");
+            stm.execute("INSERT INTO Pizze VALUES ('"+newnome+"','"+ingredienti+"',"+prezzo+",current timestamp,null)");
             conn.close();
         }catch (SQLException ex) {
             ex.printStackTrace();            
@@ -210,7 +212,7 @@ public class Model {
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM Pizze WHERE nome='"+nome+"'");
+            ResultSet rs = stm.executeQuery("SELECT * FROM Pizze WHERE nome='"+nome+"' and datafine is not null");
             while(rs.next()){
                 ret.add(rs.getString("Ingredienti"));
                 ret.add(rs.getString("Prezzo"));
@@ -228,7 +230,7 @@ public class Model {
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT prezzo FROM Pizze WHERE nome='"+pizza+"'");
+            ResultSet rs = stm.executeQuery("SELECT prezzo FROM Pizze WHERE nome='"+pizza+"' and datafine is null");
             while(rs.next()){
                 prezzo=rs.getString("prezzo");
             }
@@ -286,7 +288,7 @@ public class Model {
         try{
             Connection conn = DriverManager.getConnection(url, this.user, pwd);
             Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM Pizze WHERE nome='"+nome+"'");
+            ResultSet rs = stm.executeQuery("SELECT * FROM Pizze WHERE nome='"+nome+"' and datafine is null");
             while(rs.next()){
                 argo[0]=rs.getString("ingredienti");
                 argo[1]=rs.getString("prezzo");
@@ -320,5 +322,21 @@ public class Model {
             return true;
         }
         return false;
+    }
+    
+    public String getDataValidita (String nome){
+        String data=null;
+        try{
+            Connection conn = DriverManager.getConnection(url,user,pwd);
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select datainizio from pizze where nome='"+nome+"' and datafine is null");
+            while (rs.next()){
+                data = rs.getString("datainizio");
+            }
+        }catch(SQLException e){
+            e.printStackTrace();            
+            return null;
+        }
+        return data;
     }
 }
