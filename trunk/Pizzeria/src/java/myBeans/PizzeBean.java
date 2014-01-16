@@ -65,6 +65,7 @@ public class PizzeBean {
         String dataconsegna = "";
         String dataordine = "";
         String datarichiesta ="";
+        double prezzo=0;
         table+="<div><h3 class=\"sottotitolo\">Ordini consegnati</h3></div>";
         if(ordini.size()!=0){
             if (ordini.get(0).get(5)==null){
@@ -78,10 +79,11 @@ public class PizzeBean {
                     {
                         dataconsegna = pizza.get(5).substring(0,10);
                         dataordine = pizza.get(4).substring(0,10);
+                        prezzo=Double.parseDouble(pizza.get(1))*Double.parseDouble(pizza.get(3));
                         table+="\n\t<tr>\n\t";
                         table+="\t<td>" + pizza.get(0) +"</td>\n\t";
                         table+="\t<td>" + pizza.get(1) +"</td>\n\t";
-                        table+="\t<td>" + pizza.get(6) +"0 &#8364</td>\n\t";
+                        table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
                         table+="\t<td>" + dataordine +"</td>\n\t";
                         table+="\t<td>" + dataconsegna +"</td>\n\t";
                         table+="</tr>\n\t";
@@ -106,12 +108,13 @@ public class PizzeBean {
                     if(pizza.get(2).equals("I"))
                     {
                         dataordine = pizza.get(4).substring(0,16);
-                        datarichiesta = pizza.get(7).substring(0,16);
+                        datarichiesta = pizza.get(6).substring(0,16);
                         Timestamp time = new Timestamp(new Date().getTime());
+                        prezzo=Double.parseDouble(pizza.get(1))*Double.parseDouble(pizza.get(3));
                         table+="\n\t<tr>\n\t";
                         table+="\t<td><input type=\"textbox\" class=\"textbox\" name=\"txtPizza"+i+"\" id=\"txtPizza"+i+"\" value=\""+pizza.get(0)+"\" readonly></td>\n\t";
                         table+="\t<td>" + pizza.get(1) +"</td>\n\t";
-                        table+="\t<td>" + pizza.get(6) +"0 &#8364</td>\n\t";
+                        table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
                         table+="\t<td><input type=\"textbox\" class=\"textbox\" name=\"txtOrd"+i+"\" id=\"txtOrd"+i+"\" value=\""+dataordine+"\" readonly></td>\n\t";
                         table+="\t<td>" + datarichiesta +"</td>\n\t";
                         table+="\t<td><select name=\"cmbOp"+i+"\" id=\"cmbOp"+i+"\">\n\t";
@@ -144,7 +147,8 @@ public class PizzeBean {
         String table ="<div id=\"arrivate\" hidden=\"true\"><h3 class=\"sottotitolo\">Ordini consegnati</h3>";       
         String dataop = "";
         String dataordine="";
-        int i=0;        
+        int i=0;
+        double prezzo=0;
         if(ordini.size()!=0){
             if(ordini.get(0).get(3).equals("A")){
                 table+= "<table class=\"tblBordi\">";
@@ -152,12 +156,13 @@ public class PizzeBean {
             for(ArrayList<String> pizza : ordini) {
                 if (pizza.get(3).equals("A")){
                     dataop = pizza.get(5).substring(0,10);
-                    dataordine=pizza.get(8).substring(0,10);
+                    dataordine=pizza.get(7).substring(0,10);
+                    prezzo=Double.parseDouble(pizza.get(2))*Double.parseDouble(pizza.get(4));
                     table+="\n\t<tr>\n\t";
                     table+="\t<td>" + pizza.get(0) +"</td>\n\t";
                     table+="\t<td>" + pizza.get(1) +"</td>\n\t";
                     table+="\t<td>" + pizza.get(2) +"</td>\n\t";
-                    table+="\t<td>" + pizza.get(7) +"0 &#8364</td>\n\t";
+                    table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
                     table+="\t<td>" + dataordine +"</td>\n\t";
                     table+="\t<td>" + dataop +"</td>\n\t";
                     table+="</tr>\n\t";
@@ -178,12 +183,13 @@ public class PizzeBean {
             for(ArrayList<String> pizza : ordini) {
                 if (pizza.get(3).equals("C")){
                     dataop = pizza.get(5).substring(0,10);
-                    dataordine=pizza.get(8).substring(0,10);
+                    dataordine=pizza.get(7).substring(0,10);
+                    prezzo=Double.parseDouble(pizza.get(2))*Double.parseDouble(pizza.get(4));
                     table+="\n\t<tr>\n\t";
                     table+="\t<td>" + pizza.get(0) +"</td>\n\t";
                     table+="\t<td>" + pizza.get(1) +"</td>\n\t";
                     table+="\t<td>" + pizza.get(2) +"</td>\n\t";
-                    table+="\t<td>" + pizza.get(7) +"0 &#8364</td>\n\t";
+                    table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
                     table+="\t<td>" + dataordine +"</td>\n\t";
                     table+="\t<td>" + dataop +"</td>\n\t";
                     table+="</tr>\n\t";
@@ -204,12 +210,13 @@ public class PizzeBean {
             for(ArrayList<String> pizza : ordini) {  
                 if (pizza.get(3).equals("I")){
                     dataop = pizza.get(6).substring(0,10);
-                    dataordine=pizza.get(8).substring(0,10);
+                    dataordine=pizza.get(7).substring(0,10);
+                    prezzo=Double.parseDouble(pizza.get(2))*Double.parseDouble(pizza.get(4));
                     table+="\n\t<tr>\n\t";
                     table+="\t<td>" + pizza.get(0) +"</td>\n\t";
                     table+="\t<td>" + pizza.get(1) +"</td>\n\t";
                     table+="\t<td>" + pizza.get(2) +"</td>\n\t";
-                    table+="\t<td>" + pizza.get(7) +"0 &#8364</td>\n\t";
+                    table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
                     table+="\t<td>" + dataordine +"</td>\n\t";
                     table+="\t<td>" + dataop +"</td>\n\t";
                     table+="</tr>\n\t";
