@@ -165,8 +165,7 @@ public class Controller extends HttpServlet {
            
            else if (action.equals("validate")){
                try{
-                    HttpSession session = request.getSession();
-                    
+                    HttpSession session = request.getSession();                   
                     String utente= (String)session.getAttribute("username");
                     int rowCount = Integer.parseInt(request.getParameter("rowCount"));
                     String date=(String) request.getParameter("date");
@@ -188,17 +187,19 @@ public class Controller extends HttpServlet {
                             int ret = model.insertPrenotazione(utente, nome, quantita, time, prezzo);
                             if (ret==0){
                                 request.setAttribute("messaggio", "Prenotazione fallita, riprovare");
+                                request.setAttribute("lista",model.getLista());
                                 dsp= getServletContext().getRequestDispatcher("/newOrdina.jsp");
                                 error=true;
                             }
+                            else{
+                                request.setAttribute("messaggio", "Prenotazione salvata correttamente");
+                                request.setAttribute("ordini",model.getOrdini(utente));
+                                dsp= getServletContext().getRequestDispatcher("/visualizzaOrdini.jsp");
+                                dsp.forward(request, response);
+                             }
                         }
                     }
-                    if (!error){
-                        request.setAttribute("messaggio", "Prenotazione salvata correttamente");
-                        request.setAttribute("ordini",model.getOrdini(utente));
-                        dsp= getServletContext().getRequestDispatcher("/visualizzaOrdini.jsp");
-                        dsp.forward(request, response);
-                     }
+                    
                }catch(Exception e){
                         request.setAttribute("messaggio", "Prenotazione fallita, riprovare");
                         RequestDispatcher dsp= getServletContext().getRequestDispatcher("/newOrdina.jsp");
