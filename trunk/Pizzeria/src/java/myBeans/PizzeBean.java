@@ -150,7 +150,7 @@ public class PizzeBean {
         int i=0;
         double prezzo=0;
         if(ordini.size()!=0){
-            if(ordini.get(0).get(3).equals("A")){
+            if(ordini.size()-i!=0 && ordini.get(0).get(3).equals("A")){
                 table+= "<table class=\"tblBordi\">";
                 table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Ordinato</th>\n\t\t<th>Consegnato</th></tr>";
             for(ArrayList<String> pizza : ordini) {
@@ -167,7 +167,7 @@ public class PizzeBean {
                     table+="\t<td>" + dataop +"</td>\n\t";
                     table+="</tr>\n\t";
                     i++;
-                }
+                    }
                 }            
             table+="</table>";
             }
@@ -177,7 +177,7 @@ public class PizzeBean {
             table+="<hr>";
             table+="</div>";
             table+="<div id=\"cancellate\" hidden=\"true\"><h3 class=\"sottotitolo\">Ordini annullati</h3>";           
-            if(ordini.get(i).get(3).equals("C")){
+            if(ordini.size()-i!=0 && ordini.get(i).get(3).equals("C")){
                 table+="<table class=\"tblBordi\" id=\"conferma\">";
             table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Ordinato</th>\n\t\t<th>Cancellato</th>\n\t\t</tr>";
             for(ArrayList<String> pizza : ordini) {
@@ -204,23 +204,23 @@ public class PizzeBean {
             table+="<hr>";
             table+="</div>";
             table+="<div id=\"inordine\" hidden=\"true\"><h3 class=\"sottotitolo\">Ordini non consegnati</h3>";
-            if(ordini.get(i).get(3).equals("I")){
+            if(ordini.size()-i!=0 && ordini.get(i).get(3).equals("I")){
                 table+="<table class=\"tblBordi\" id=\"conferma\">";
-            table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Ordinato</th>\n\t\t<th>Richiesto</th>\n\t\t</tr>";
-            for(ArrayList<String> pizza : ordini) {  
-                if (pizza.get(3).equals("I")){
-                    dataop = pizza.get(6).substring(0,10);
-                    dataordine=pizza.get(7).substring(0,10);
-                    prezzo=Double.parseDouble(pizza.get(2))*Double.parseDouble(pizza.get(4));
-                    table+="\n\t<tr>\n\t";
-                    table+="\t<td>" + pizza.get(0) +"</td>\n\t";
-                    table+="\t<td>" + pizza.get(1) +"</td>\n\t";
-                    table+="\t<td>" + pizza.get(2) +"</td>\n\t";
-                    table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
-                    table+="\t<td>" + dataordine +"</td>\n\t";
-                    table+="\t<td>" + dataop +"</td>\n\t";
-                    table+="</tr>\n\t";
-                }
+                table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Ordinato</th>\n\t\t<th>Richiesto</th>\n\t\t</tr>";
+                for(ArrayList<String> pizza : ordini) {  
+                    if (pizza.get(3).equals("I")){
+                        dataop = pizza.get(6).substring(0,10);
+                        dataordine=pizza.get(7).substring(0,10);
+                        prezzo=Double.parseDouble(pizza.get(2))*Double.parseDouble(pizza.get(4));
+                        table+="\n\t<tr>\n\t";
+                        table+="\t<td>" + pizza.get(0) +"</td>\n\t";
+                        table+="\t<td>" + pizza.get(1) +"</td>\n\t";
+                        table+="\t<td>" + pizza.get(2) +"</td>\n\t";
+                        table+="\t<td>" + prezzo +"0 &#8364</td>\n\t";
+                        table+="\t<td>" + dataordine +"</td>\n\t";
+                        table+="\t<td>" + dataop +"</td>\n\t";
+                        table+="</tr>\n\t";
+                    }
                 }
             table+="</table>";
             }
@@ -245,5 +245,4 @@ public class PizzeBean {
     public String getTabella(){
         return tabella;
     }
-
 }
