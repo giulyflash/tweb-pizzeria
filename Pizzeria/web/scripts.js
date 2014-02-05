@@ -61,6 +61,7 @@ function aggiungiPrenotazione(){
             element2.setAttribute("onchange", "controllNeg(this);");
             element3.type = "checkbox";
             element3.name = "chkStatus"+rowCount;
+            element3.id = "chkStatus"+rowCount;
             element3.checked="checked";
             element3.readOnly=true;
             cell3.appendChild(element3)
@@ -81,7 +82,18 @@ function confPrenotazione(){
     var rowCount = table.rows.length-1;
     var error=false;
     
-    if (rowCount<1 || document.getElementById("date").value===""){
+    if (rowCount>0 && document.getElementById("date").value!==""){
+        for (var i=0;i<rowCount;i++){
+            var cb = document.getElementById("chkStatus"+(i+1));
+            if (!cb.checked){
+                error=true;
+            }
+        }
+        if (error){
+            alert("Seleziona almeno una pizza");
+        }
+    }
+    else{
         alert ("Controlla tutti i campi (prenotazione/data)");
         error=true;
     }
