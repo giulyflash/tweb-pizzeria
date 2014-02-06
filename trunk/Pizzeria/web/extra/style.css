@@ -10,7 +10,7 @@ html {
 body {
     height:99%;
     width:99%;
-    background:url("images/sfondo2.jpg");
+    background:url("../images/sfondo2.jpg");
     background-size: 100%;
     background-attachment: scroll;
     background-repeat: no-repeat;
