@@ -296,24 +296,6 @@ public class Controller extends HttpServlet {
                response.getWriter().write(xml);
            }
            
-           else if (action.equals("set")){
-               String nome=(String) request.getAttribute("cmbPizza");
-               ArrayList<String> pizza = new ArrayList<String>();
-               
-               pizza=model.getPizza(nome);
-               if (pizza!=null){
-                   request.setAttribute("txtIngrU", pizza.get(0));
-                   request.setAttribute("txtPrezzoU", pizza.get(1));
-               }
-               else{
-                   request.setAttribute("txtIngrU", "errore");
-                   request.setAttribute("txtPrezzoU", "errore");
-               }
-               request.setAttribute("messaggio", "");
-               RequestDispatcher dsp= getServletContext().getRequestDispatcher("/modificaPizze.jsp");
-               dsp.forward(request, response);
-           }
-           
            //conferma degli ordini
            else if (action.equals("arrivo")){
                HttpSession session = request.getSession();
