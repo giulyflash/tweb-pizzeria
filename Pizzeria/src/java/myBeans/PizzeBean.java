@@ -177,6 +177,7 @@ public class PizzeBean {
             table+="<hr>";
             table+="</div>";
             table+="<div id=\"cancellate\" hidden=\"true\"><h3 class=\"sottotitolo\">Ordini annullati</h3>";           
+
             if(ordini.size()-i!=0 && ordini.get(i).get(3).equals("C")){
                 table+="<table class=\"tblBordi\" id=\"conferma\">";
             table+="\n\t<tr>\n\t\t<th>Utente</th>\n\t\t<th>Pizza</th>\n\t\t<th>Quantità</th>\n\t\t<th>Prezzo</th>\n\t\t<th>Ordinato</th>\n\t\t<th>Cancellato</th>\n\t\t</tr>";

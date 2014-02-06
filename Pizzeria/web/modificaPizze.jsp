@@ -6,9 +6,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="style.css" />
-        <script type="text/javascript" src="scripts.js" ></script>
-        <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+        <link rel="stylesheet" href="extra/style.css" />
+        <script type="text/javascript" src="extra/scripts.js" ></script>
+        <script type="text/javascript" src="extra/jquery-1.10.2.min.js"></script>
         <title>Modifica elenco pizze</title>
     </head>
     <body>
